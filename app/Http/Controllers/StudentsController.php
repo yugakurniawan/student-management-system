@@ -15,7 +15,7 @@ class StudentsController extends Controller
     public function index()
     {
         $students = \App\Models\Student::all();
-        return view('students/index', compact('students'));
+        return view('students.index', compact('students'));
     }
 
     /**
@@ -23,10 +23,11 @@ class StudentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        \App\Models\Student::create($request->all());
-        return redirect('/')->with('sukses', 'data berhasil diinput');
+        // \App\Models\Student::create($request->all());
+        // return redirect('/')->with('sukses', 'data berhasil diinput');
+        return view('students.create');
     }
 
     /**
@@ -37,7 +38,8 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Student::create($request->all());
+        return redirect('/students')->with('status', 'Mahasiswa Berhasil Ditambahkan!');
     }
 
     /**
@@ -48,7 +50,7 @@ class StudentsController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        return view('students.detail', compact('student'));
     }
 
     /**
@@ -59,7 +61,8 @@ class StudentsController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        $students = \App\Models\Student::find($student);
+        return view('students/edit', compact('students'));
     }
 
     /**
