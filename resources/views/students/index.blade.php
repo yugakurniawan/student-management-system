@@ -3,11 +3,6 @@
 @section('container')
 
 <div class="container">
-    @if(session('sukses'))
-    <div class="alert alert-success" role="alert">
-        {{session('sukses')}}
-    </div>
-    @endif
     <div class="row">
         <div class="col">
             <h1> Data Mahasiswa </h1>
@@ -15,7 +10,7 @@
             <a href="/students/create" class="btn btn-primary my-3">Tambah Data</a>
 
             @if (session('status'))
-            <div class="alert alert-success">
+            <div class="alert alert-success" style="margin-top:20px" >
                 {{ session('status') }}
             </div>
             @endif
@@ -38,7 +33,12 @@
                         <td>{{ $student->universitas}}</td>
                         <td>{{ $student->angkatan}}</td>
                         <td>
-                            <a href="/students/{{ $student->id }}" class="btn btn-info btn-sm">Detail</a>
+                            <a href="/students/{{ $student->id}}" class="btn btn-info btn-sm">Detail</a>
+                            <a href="/students/{{ $student->id}}" class="btn btn-danger btn-sm" onclick="event.preventDefault(); $(this).siblings('form').submit();">Hapus</a>
+                            <form action="/students/{{$student->id}}" method="post">
+                                @method('delete')
+                                @csrf
+                            </form>
                         </td>
                     </tr>
                     @endforeach

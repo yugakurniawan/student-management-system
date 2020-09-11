@@ -22,5 +22,9 @@ use App\Http\Controllers\StudentsController;
 Route::get('/students', [StudentsController::class, 'index']);
 Route::get('/students/create', [StudentsController::class, 'create']);
 Route::get('/students/{student}', [StudentsController::class, 'show']);
-Route::get('/students/{student}/edit', [StudentsController::class, 'edit']);
 Route::post('/students', [StudentsController::class, 'store']);
+Route::delete('/students/{student}', [StudentsController::class, 'destroy']);
+Route::get('/students/{student}/edit', [StudentsController::class, 'edit']);
+Route::patch('/students/{student}', [StudentsController::class, 'update']);
+
+Route::resource('students', StudentsController::class);

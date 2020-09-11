@@ -12,9 +12,13 @@ class StudentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $students = \App\Models\Student::all();
+        if($request->has('find')){
+            $students = Student::where('nama','LIKE','%'.$request->find.'%')->get();
+        }else{
+            $students = \App\Models\Student::all();
+        }
         return view('students.index', compact('students'));
     }
 
@@ -25,8 +29,6 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        // \App\Models\Student::create($request->all());
-        // return redirect('/')->with('sukses', 'data berhasil diinput');
         return view('students.create');
     }
 
@@ -38,8 +40,14 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nama' => 'required',
+            'universitas' => 'required',
+            'angkatan' => 'required',
+        ]);
+
         Student::create($request->all());
-        return redirect('/students')->with('status', 'Mahasiswa Berhasil Ditambahkan!');
+        return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Ditambahkan!');
     }
 
     /**
@@ -50,7 +58,7 @@ class StudentsController extends Controller
      */
     public function show(Student $student)
     {
-        return view('students.detail', compact('student'));
+        return view('students.show', compact('student'));
     }
 
     /**
@@ -62,7 +70,7 @@ class StudentsController extends Controller
     public function edit(Student $student)
     {
         $students = \App\Models\Student::find($student);
-        return view('students/edit', compact('students'));
+        return view('students.edit', compact('student'));
     }
 
     /**
@@ -74,7 +82,19 @@ class StudentsController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'universitas' => 'required',
+            'angkatan' => 'required',
+        ]);
+
+        Student::where('id', $student->id)
+          ->update([
+              'nama' => $request->nama,
+              'universitas' => $request->universitas,
+              'angkatan' => $request->angkatan,
+              ]);
+              return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Diperbarui!');
     }
 
     /**
@@ -85,6 +105,7 @@ class StudentsController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        Student::destroy($student->id);
+        return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Dihapus!');
     }
 }

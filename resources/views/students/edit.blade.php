@@ -4,36 +4,40 @@
 
 <div class="container">
     <div class="row">
-        <div class="col mt-3">
+        <div class="col-6">
 
-            <h1> Data Mahasiswa </h1>
-
-            <form class="mt-3">
-
+        <form method="POST" action="/students/{{ $student->id }}">
+                @method('patch')
+                @csrf
                 <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>
+                    <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="text" value="{{ $students->nama }}">
+                        <input type="text" class="form-control" id="nama" name="nama" value="{{ $student->nama }}">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Universitas</label>
+                    <label for="universitas" class="col-sm-2 col-form-label">Universitas</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="text" value="{{ $students->universitas }}">
+                        <input type="text" class="form-control" id="universitas" name="universitas" value="{{ $student->universitas }}">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Angkatan</label>
+                    <label for="angkatan" class="col-sm-2 col-form-label">Angkatan</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="text" value="{{ $students->angkatan }}">
+                        <input type="text" class="form-control" id="angkatan" name="angkatan" value="{{ $student->angkatan }}">
                     </div>
                 </div>
-
-                <a href="/students/" class="btn btn-success">selesai</a>
-                <a href="/students" class="btn btn-info">kembali</a>
-
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="/students" class="btn btn-info">Kembali</a>
+                    </div>
+                </div>
             </form>
+
+
         </div>
     </div>
 </div>
+
 @endsection

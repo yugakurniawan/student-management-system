@@ -29,7 +29,7 @@
                 </div>
 
                 <a href="/students/{{ $student -> id}}/edit" class="btn btn-warning">edit</a>
-                <a href="/students" class="btn btn-info">kembali</a>
+                <a href="/students" class="btn btn-info ">kembali</a>
 
             </form>
         </div>
