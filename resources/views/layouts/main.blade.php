@@ -31,20 +31,15 @@
 		@include('layouts.sidebar')
 		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
-		<div class="main">
+		{{-- <div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
 					<!-- OVERVIEW -->
 					<div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12"> --}}
                             @yield('container')
-                        </div>
-                    </div>
-				</div>
-			</div>
-			<!-- END MAIN CONTENT -->
-		</div>
+
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
 		<footer>

@@ -108,4 +108,9 @@ class StudentsController extends Controller
         Student::destroy($student->id);
         return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Dihapus!');
     }
+
+    public function profile(Student $student)
+    {
+        return view('students.profile', compact('student'));
+    }
 }
