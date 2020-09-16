@@ -39,7 +39,7 @@
                                         <td>{{ $student->universitas}}</td>
                                         <td>{{ $student->angkatan}}</td>
                                         <td>
-                                            <a href="/students/{{ $student->id}}" class="btn btn-info btn-sm">Detail</a>
+                                            <a href="/students/{{ $student->id}}/profile" class="btn btn-info btn-sm">Detail</a>
                                             <a href="/students/{{ $student->id}}" class="btn btn-danger btn-sm"
                                                 onclick="event.preventDefault(); $(this).siblings('form').submit();">Hapus</a>
                                             <form action="/students/{{$student->id}}" method="post">

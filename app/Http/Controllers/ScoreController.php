@@ -8,12 +8,6 @@ use Illuminate\Validation\Rule;
 
 class ScoreController extends Controller
 {
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request, $id)
     {
         $data = $request->validate([
@@ -28,13 +22,6 @@ class ScoreController extends Controller
         return redirect()->back()->with('status', 'Berhasil Menambahkan Data');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Score  $score
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Score $score)
     {
         $data = $request->validate([

@@ -5,6 +5,7 @@ use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ScoreController;
+use App\Http\Controllers\ProjectsController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,4 +48,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::delete('/nilai/{score}', [ScoreController::class, 'destroy']);
     Route::patch('/nilai/{score}', [ScoreController::class, 'update']);
 
+    Route::get('/project/{project}', [ProjectsController::class, 'show']);
+    Route::post('/project/{id}', [ProjectsController::class, 'store']);
+    Route::delete('/project/{project}', [ProjectsController::class, 'destroy']);
+    Route::patch('/project/{project}', [ProjectsController::class, 'update']);
 });
