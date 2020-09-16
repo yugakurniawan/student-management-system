@@ -53,7 +53,8 @@
 	<script src="{{ url('') }}/assets/vendor/jquery/jquery.min.js"></script>
 	<script src="{{ url('') }}/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="{{ url('') }}/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="{{ url('') }}/assets/scripts/klorofil-common.js"></script>
+    <script src="{{ url('') }}/assets/scripts/klorofil-common.js"></script>
+    @stack('scripts')
 </body>
 
 </html>

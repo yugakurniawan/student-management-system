@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ScoreController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,5 +41,10 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/students/{student}/edit', [StudentsController::class, 'edit']);
     Route::patch('/students/{student}', [StudentsController::class, 'update']);
     Route::resource('students', StudentsController::class);
+
+    Route::get('/nilai/{score}', [ScoreController::class, 'show']);
+    Route::post('/nilai/{id}', [ScoreController::class, 'store']);
+    Route::delete('/nilai/{score}', [ScoreController::class, 'destroy']);
+    Route::patch('/nilai/{score}', [ScoreController::class, 'update']);
 
 });
