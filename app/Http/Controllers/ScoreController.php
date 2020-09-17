@@ -11,7 +11,7 @@ class ScoreController extends Controller
     public function store(Request $request, $id)
     {
         $data = $request->validate([
-            'semester'  => ['required','numeric','min:1','max:14','unique:scores,semester'],
+            'semester'  => ['required','numeric','min:1','max:14'],
             'nilai'     => ['required','numeric','min:0','max:4']
         ]);
 

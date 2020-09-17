@@ -32,6 +32,35 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label for="fakultas" class="col-sm-2 col-form-label">Fakultas</label>
+                                        <div class="col-sm-6">
+                                            <input type="text"
+                                                class="form-control @error('fakultas') is-invalid @enderror"
+                                                id="fakultas" name="fakultas" value="{{ old('fakultas') }}">
+                                            @error('fakultas') <div class="invalid-feedback">{{$message}}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="jurusan" class="col-sm-2 col-form-label">Jurusan</label>
+                                        <div class="col-sm-6">
+                                            <input type="text"
+                                                class="form-control @error('jurusan') is-invalid @enderror" id="jurusan"
+                                                name="jurusan" value="{{ old('jurusan') }}">
+                                            @error('jurusan') <div class="invalid-feedback">{{$message}}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="prodi" class="col-sm-2 col-form-label">Prodi</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control @error('prodi') is-invalid @enderror"
+                                                id="prodi" name="prodi" value="{{ old('prodi') }}">
+                                            @error('prodi') <div class="invalid-feedback">{{$message}}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label for="angkatan" class="col-sm-2 col-form-label">Angkatan</label>
                                         <div class="col-sm-6">
                                             <input type="text"
@@ -42,14 +71,32 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                                        <div class="col-sm-6">
+                                            <input type="text"
+                                                class="form-control @error('alamat') is-invalid @enderror" id="alamat"
+                                                name="alamat" value="{{ old('alamat') }}">
+                                            @error('alamat') <div class="invalid-feedback">{{$message}}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="telp" class="col-sm-2 col-form-label">Telp</label>
+                                        <div class="col-sm-6">
+                                            <input type="number"
+                                                class="form-control @error('telp') is-invalid @enderror" id="telp"
+                                                name="telp" value="{{ old('telp') }}">
+                                            @error('telp') <div class="invalid-feedback">{{$message}}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-sm-10">
                                             <button type="submit" class="btn btn-primary">Tambah</button>
                                             <a href="/students" class="btn btn-warning">Kembali</a>
                                         </div>
                                     </div>
                                 </form>
-
-
                             </div>
                         </div>
                     </div>

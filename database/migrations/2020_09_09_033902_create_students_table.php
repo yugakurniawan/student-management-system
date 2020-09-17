@@ -17,10 +17,16 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('nama');
             $table->string('universitas');
+            $table->string('fakultas');
+            $table->string('jurusan');
+            $table->string('prodi');
+            $table->char('angkatan');
             $table->text('alamat');
             $table->char('telp');
             $table->timestamps();
         });
+
+
     }
 
     /**

@@ -20,13 +20,16 @@
                                 </div>
                                 <div class="profile-stat">
                                     <div class="row">
-                                        <div class="col-md-4 stat-item">
-                                            45 <span>Projects</span>
+                                        <div class="col-md-3 stat-item">
+                                            45 <span>IPK</span>
                                         </div>
-                                        <div class="col-md-4 stat-item">
-                                            15 <span>Awards</span>
+                                        <div class="col-md-3 stat-item">
+                                            15 <span>Kehadiran</span>
                                         </div>
-                                        <div class="col-md-4 stat-item">
+                                        <div class="col-md-3 stat-item">
+                                            2 <span>Projects</span>
+                                        </div>
+                                        <div class="col-md-3 stat-item">
                                             2174 <span>Points</span>
                                         </div>
                                     </div>
@@ -60,8 +63,7 @@
                                 <ul class="nav" role="tablist">
                                     <li class="active"><a href="#tab-bottom-left1" role="tab" data-toggle="tab">Recent
                                             Activity</a></li>
-                                    <li><a href="#tab-bottom-left2" role="tab" data-toggle="tab">Projects <span
-                                                class="badge">7</span></a></li>
+                                    <li><a href="#tab-bottom-left2" role="tab" data-toggle="tab">Projects </a></li>
                                 </ul>
                             </div>
                             <div class="tab-content">

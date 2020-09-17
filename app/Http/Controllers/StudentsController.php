@@ -43,7 +43,11 @@ class StudentsController extends Controller
         $request->validate([
             'nama' => 'required',
             'universitas' => 'required',
+            'fakultas' => 'required',
+            'prodi' => 'required',
+            'jurusan' => 'required',
             'angkatan' => 'required',
+            'telp' => 'required',
         ]);
 
         Student::create($request->all());
@@ -85,7 +89,11 @@ class StudentsController extends Controller
         $request->validate([
             'nama' => 'required',
             'universitas' => 'required',
+            'fakultas' => 'required',
+            'jurusan' => 'required',
+            'prodi' => 'required',
             'angkatan' => 'required',
+            'telp' => 'required'
         ]);
 
         Student::where('id', $student->id)
@@ -93,6 +101,11 @@ class StudentsController extends Controller
               'nama' => $request->nama,
               'universitas' => $request->universitas,
               'angkatan' => $request->angkatan,
+              'fakultas' => $request->fakultas,
+              'jurusan' => $request->jurusan,
+              'prodi' => $request->prodi,
+              'angkatan' => $request->angkatan,
+              'telp' => $request->telp
               ]);
               return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Diperbarui!');
     }
