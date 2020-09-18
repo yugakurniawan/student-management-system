@@ -20,4 +20,13 @@ class Student extends Model
     {
         return $this->hasMany(Project::class);
     }
+
+    public function getAvatar()
+    {
+        if(!$this->avatar){
+            return asset('assets/img/user-medium.png');
+        }
+
+        return asset('images/'.$this->avatar);
+    }
 }

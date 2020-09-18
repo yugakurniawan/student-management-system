@@ -105,8 +105,15 @@ class StudentsController extends Controller
               'jurusan' => $request->jurusan,
               'prodi' => $request->prodi,
               'angkatan' => $request->angkatan,
-              'telp' => $request->telp
+              'telp' => $request->telp,
+              'avatar' => $request->avatar
               ]);
+
+              if($request->hasFile('avatar')){
+                  $request->file('avatar')->move('images/',$request->file('avatar')->getClientOriginalName());
+                  $student->avatar = $request->file('avatar')->getClientOriginalName();
+                  $student->save();
+              }
               return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Diperbarui!');
     }
 

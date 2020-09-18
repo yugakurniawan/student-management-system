@@ -14,7 +14,7 @@
                             <div class="profile-header">
                                 <div class="overlay"></div>
                                 <div class="profile-main">
-                                    <img src="/assets/img/user-medium.png" class="img-circle" alt="Avatar">
+                                    <img src="{{$student->getAvatar()}}" class="img-circle" alt="Avatar">
                                     <h3 class="name">{{ $student->nama }}</h3>
                                     <span class="online-status status-available">Available</span>
                                 </div>
@@ -42,11 +42,16 @@
                                     <h4 class="heading">Basic Info</h4>
                                     <ul class="list-unstyled list-justify">
                                         <li>Universitas <span>{{ $student->universitas }}</span></li>
+                                        <li>Fakultas <span>{{ $student->fakultas }}</span></li>
+                                        <li>Jurusan <span>{{ $student->jurusan }}</span></li>
+                                        <li>Prodi <span>{{ $student->prodi }}</span></li>
                                         <li>Angkatan<span>{{ $student->angkatan }}</span></li>
+                                        <li>Alamat<span>{{ $student->alamat }}</span></li>
+                                        <li>Telp<span>{{ $student->telp }}</span></li>
                                     </ul>
                                 </div>
 
-                                <div class="text-center"><a href="#" class="btn btn-primary">Edit Profile</a></div>
+                            <div class="text-center"><a href="/students/{{$student->id}}/edit" class="btn btn-warning">Edit Profile</a></div>
                             </div>
                             <!-- END PROFILE DETAIL -->
                         </div>

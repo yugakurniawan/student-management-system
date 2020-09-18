@@ -16,7 +16,7 @@ class CreateScoresTable extends Migration
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained('students')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('semester')->unique();
+            $table->integer('semester');
             $table->float('nilai');
             $table->timestamps();
         });

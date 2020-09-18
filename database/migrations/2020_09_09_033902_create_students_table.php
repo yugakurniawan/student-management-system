@@ -23,6 +23,7 @@ class CreateStudentsTable extends Migration
             $table->char('angkatan');
             $table->text('alamat');
             $table->char('telp');
+            $table->string('avatar')->nullable();
             $table->timestamps();
         });
 

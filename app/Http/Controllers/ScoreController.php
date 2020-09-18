@@ -25,7 +25,7 @@ class ScoreController extends Controller
     public function update(Request $request, Score $score)
     {
         $data = $request->validate([
-            'semester'  => ['required','numeric','min:1','max:14', Rule::unique('scores','semester')->ignore($score)],
+            'semester'  => ['required','numeric','min:1','max:14'],
             'nilai'     => ['required','numeric','min:0','max:4']
         ]);
 
