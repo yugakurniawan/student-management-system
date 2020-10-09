@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Meeting;
 use App\Models\MeetingStudent;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class MeetingsController extends Controller
@@ -15,7 +16,7 @@ class MeetingsController extends Controller
      */
     public function index()
     {
-        $meetings = \App\Models\Meeting::all();
+        $meetings = Meeting::all();
         return view('meetings.index', compact('meetings'));
     }
 
@@ -26,7 +27,7 @@ class MeetingsController extends Controller
      */
     public function create()
     {
-        return view('meetings.create');
+        return view('meetings.create',['students'=> Student::all()]);
     }
 
     /**
@@ -39,17 +40,18 @@ class MeetingsController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            // 'peserta' => 'required',
+            'student_id' => 'required',
+        ],[
+            'student_id.required' => 'Peserta meeting harus diisi'
         ]);
-
         $meeting = Meeting::create(['nama' => $request->nama]);
-        foreach($request->student as $student){
+        foreach($request->student_id as $student){
             MeetingStudent::create([
                 'meeting_id' => $meeting->id,
                 'student_id' => $student
             ]);
         }
-        return redirect('/meetings')->with('status', 'Data Mahasiswa Berhasil Ditambahkan!');
+        return redirect('/meetings')->with('status', 'Meeting Berhasil Ditambahkan!');
     }
 
     /**
@@ -60,7 +62,7 @@ class MeetingsController extends Controller
      */
     public function show(Meeting $meeting)
     {
-        return view('meetings.show', compact('meeting'));
+        return view('meetings.detail', compact('meeting'));
     }
 
     /**
@@ -123,7 +125,7 @@ class MeetingsController extends Controller
      */
     public function destroy(Meeting $meeting)
     {
-        Student::destroy($student->id);
-        return redirect('/meetings')->with('status', 'Data Mahasiswa Berhasil Dihapus!');
+        Meeting::destroy($meeting->id);
+        return redirect('/meetings')->with('status', 'Meeting Berhasil Dihapus!');
     }
 }

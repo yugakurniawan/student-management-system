@@ -373,7 +373,8 @@
     //         Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
     // },
     xAxis: {
-        categories: {!!json_encode($semester)!!}
+        categories: {!!json_encode($semester)!!},
+        min: 1
     },
     yAxis: {
         title: {

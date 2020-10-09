@@ -15,26 +15,15 @@
                         <div class="row">
                             <div class="col-6">
 
-                                <form method="POST" action="/meetings">
+                                <form method="POST" action="/jadwal">
                                     @csrf
+                                    <input type="hidden" name="meeting_id" value="{{ $meeting_id }}">
                                     <div class="form-group row">
-                                        <label for="nama" class="col-sm-2 col-form-label">Nama Meeting</label>
+                                        <label for="jadwal" class="col-sm-2 col-form-label">Jadwal</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control @error('nama') is-invalid @enderror"
-                                                id="nama" name="nama" value="{{ old('nama') }}">
-                                            @error('nama') <div class="invalid-feedback">{{$message}}</div> @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="student_id" class="col-sm-2 col-form-label">Peserta Meeting</label>
-                                        <div class="col-sm-6">
-                                            <select class="form-control js-example-basic-multiple" name="student_id[]" multiple="multiple">
-                                                @foreach ($students as $item)
-                                                    <option value="{{ $item->id }}" {{ old('student_id') == $item->id ? 'selected' : '' }}>{{ $item->nama }}</option>
-                                                @endforeach
-                                              </select>
-                                            @error('student_id') <div class="invalid-feedback">{{$message}}</div>
-                                            @enderror
+                                            <input type="datetime-local" class="form-control @error('jadwal') is-invalid @enderror"
+                                                id="jadwal" name="jadwal" value="{{ old('jadwal') }}" >
+                                            @error('jadwal') <div class="invalid-feedback">{{$message}}</div> @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">

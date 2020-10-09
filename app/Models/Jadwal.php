@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Meeting extends Model
+class Jadwal extends Model
 {
     protected $guarded = [];
     use HasFactory;
 
-    public function students()
+    public function meeting()
     {
-        return $this->belongsToMany(Student::class);
+        return $this->belongsTo(Meeting::class);
     }
 
-    public function jadwal()
+    public function kehadiran()
     {
-        return $this->hasMany(Jadwal::class);
+        return $this->hasMany(Kehadiran::class);
     }
-
 }

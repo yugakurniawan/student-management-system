@@ -6,8 +6,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\ProjectsController;
-use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\MeetingsController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\KehadiranController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,7 +49,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::delete('/project/{project}', [ProjectsController::class, 'destroy']);
     Route::patch('/project/{project}', [ProjectsController::class, 'update']);
 
-    Route::get('/meetings', [MeetingsController::class, 'index']);
-    Route::get('/meetings/create', [MeetingsController::class, 'create']);
-    Route::post('/meetings', [MeetingsController::class, 'store']);
+    Route::resource('meetings', MeetingsController::class);
+    Route::resource('jadwal', JadwalController::class)->except('create');
+    Route::get('/jadwal/create/{project}', [JadwalController::class, 'create']);
+    Route::patch('/kehadiran/{id}', [KehadiranController::class, 'update'])->name('kehadiran.update');
+
 });

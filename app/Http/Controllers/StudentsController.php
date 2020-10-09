@@ -132,6 +132,8 @@ class StudentsController extends Controller
 
     public function profile(Student $student)
     {
+        $semester[] = null;
+        $nilai[] = null;
         foreach($student->scores as $scr){
             $semester[] = $scr->semester;
             $nilai[] = $scr->nilai;

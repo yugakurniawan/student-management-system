@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMeetingStudentsTable extends Migration
+class CreateJadwalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateMeetingStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('meeting_students', function (Blueprint $table) {
+        Schema::create('jadwals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained('students')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('meeting_id')->constrained('meetings')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamp('jadwal');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateMeetingStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('meeting_students');
+        Schema::dropIfExists('jadwals');
     }
 }
