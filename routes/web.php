@@ -6,6 +6,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\MeetingsController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,14 +35,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
-    Route::get('/students', [StudentsController::class, 'index']);
-    Route::get('/students/create', [StudentsController::class, 'create']);
     Route::get('/students/{student}/profile', [StudentsController::class, 'profile']);
-    Route::get('/students/{student}', [StudentsController::class, 'show']);
-    Route::post('/students', [StudentsController::class, 'store']);
-    Route::delete('/students/{student}', [StudentsController::class, 'destroy']);
-    Route::get('/students/{student}/edit', [StudentsController::class, 'edit']);
-    Route::patch('/students/{student}', [StudentsController::class, 'update']);
     Route::resource('students', StudentsController::class);
 
     Route::get('/nilai/{score}', [ScoreController::class, 'show']);
@@ -52,4 +47,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('/project/{id}', [ProjectsController::class, 'store']);
     Route::delete('/project/{project}', [ProjectsController::class, 'destroy']);
     Route::patch('/project/{project}', [ProjectsController::class, 'update']);
+
+    Route::get('/meetings', [MeetingsController::class, 'index']);
+    Route::get('/meetings/create', [MeetingsController::class, 'create']);
+    Route::post('/meetings', [MeetingsController::class, 'store']);
 });

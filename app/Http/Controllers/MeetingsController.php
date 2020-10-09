@@ -2,25 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
-use App\Models\Score;
+use App\Models\Meeting;
+use App\Models\MeetingStudent;
 use Illuminate\Http\Request;
 
-class StudentsController extends Controller
+class MeetingsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request->has('find')){
-            $students = Student::where('nama','LIKE','%'.$request->find.'%')->get();
-        }else{
-            $students = \App\Models\Student::all();
-        }
-        return view('students.index', compact('students'));
+        $meetings = \App\Models\Meeting::all();
+        return view('meetings.index', compact('meetings'));
     }
 
     /**
@@ -30,7 +26,7 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        return view('meetings.create');
     }
 
     /**
@@ -43,49 +39,50 @@ class StudentsController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'universitas' => 'required',
-            'fakultas' => 'required',
-            'prodi' => 'required',
-            'jurusan' => 'required',
-            'angkatan' => 'required',
-            'telp' => 'required',
+            // 'peserta' => 'required',
         ]);
 
-        Student::create($request->all());
-        return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Ditambahkan!');
+        $meeting = Meeting::create(['nama' => $request->nama]);
+        foreach($request->student as $student){
+            MeetingStudent::create([
+                'meeting_id' => $meeting->id,
+                'student_id' => $student
+            ]);
+        }
+        return redirect('/meetings')->with('status', 'Data Mahasiswa Berhasil Ditambahkan!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Student  $student
+     * @param  \App\Models\Meeting  $meeting
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show(Meeting $meeting)
     {
-        return view('students.show', compact('student'));
+        return view('meetings.show', compact('meeting'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Student  $student
+     * @param  \App\Models\Meeting  $meeting
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit(Meeting $meeting)
     {
-        $students = \App\Models\Student::find($student);
-        return view('students.edit', compact('student'));
+        $meetings = \App\Models\Student::find($student);
+        return view('meetings.edit', compact('student'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Student  $student
+     * @param  \App\Models\Meeting  $meeting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, Meeting $meeting)
     {
         $request->validate([
             'nama' => 'required',
@@ -115,29 +112,18 @@ class StudentsController extends Controller
                   $student->avatar = $request->file('avatar')->getClientOriginalName();
                   $student->save();
               }
-              return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Diperbarui!');
+              return redirect('/meetings')->with('status', 'Data Mahasiswa Berhasil Diperbarui!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Student  $student
+     * @param  \App\Models\Meeting  $meeting
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy(Meeting $meeting)
     {
         Student::destroy($student->id);
-        return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Dihapus!');
-    }
-
-    public function profile(Student $student)
-    {
-        foreach($student->scores as $scr){
-            $semester[] = $scr->semester;
-            $nilai[] = $scr->nilai;
-        }
-
-        return view('students.profile', compact('student','semester','nilai'));
-
+        return redirect('/meetings')->with('status', 'Data Mahasiswa Berhasil Dihapus!');
     }
 }

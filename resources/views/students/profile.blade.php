@@ -51,7 +51,8 @@
                                     </ul>
                                 </div>
 
-                            <div class="text-center"><a href="/students/{{$student->id}}/edit" class="btn btn-warning">Edit Profile</a></div>
+                                <div class="text-center"><a href="/students/{{$student->id}}/edit"
+                                        class="btn btn-warning">Edit Profile</a></div>
                             </div>
                             <!-- END PROFILE DETAIL -->
                         </div>
@@ -97,7 +98,7 @@
                                                                 <input type="number" name="semester" id="semester"
                                                                     class="form-control @error('semester') is-invalid @enderror">
                                                                 @error('semester') <span
-                                                                    class="invalid-feedback">{{ $message }}</span>
+                                                                    class="text-danger text-sm">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                             <div class="form-group">
@@ -105,7 +106,7 @@
                                                                 <input type="number" step="any" name="nilai" id="nilai"
                                                                     class="form-control @error('nilai') is-invalid @enderror">
                                                                 @error('nilai') <span
-                                                                    class="invalid-feedback">{{ $message }}</span>
+                                                                    class="text-danger text-sm">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -176,7 +177,7 @@
                                                                 <input type="number" name="tahun" id="tahun"
                                                                     class="form-control @error('tahun') is-invalid @enderror">
                                                                 @error('tahun') <span
-                                                                    class="invalid-feedback">{{ $message }}</span>
+                                                                    class="text-danger text-sm">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                             <div class="form-group">
@@ -185,7 +186,7 @@
                                                                     id="kegiatan"
                                                                     class="form-control @error('kegiatan') is-invalid @enderror">
                                                                 @error('kegiatan') <span
-                                                                    class="invalid-feedback">{{ $message }}</span>
+                                                                    class="text-danger text-sm">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                             <div class="form-group">
@@ -193,7 +194,7 @@
                                                                 <input type="text" step="any" name="tugas" id="tugas"
                                                                     class="form-control @error('tugas') is-invalid @enderror">
                                                                 @error('tugas') <span
-                                                                    class="invalid-feedback">{{ $message }}</span>
+                                                                    class="text-danger text-sm">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                             <div class="form-group">
@@ -201,7 +202,7 @@
                                                                 <input type="number" step="any" name="nilai" id="nilai"
                                                                     class="form-control @error('nilai') is-invalid @enderror">
                                                                 @error('nilai') <span
-                                                                    class="invalid-feedback">{{ $message }}</span>
+                                                                    class="text-danger text-sm">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -249,6 +250,7 @@
                                         <!-- END TABBED CONTENT -->
                                     </div>
                                 </div>
+                                <div id="chartNilai"></div>
                                 <!-- END RIGHT COLUMN -->
                             </div>
                         </div>
@@ -276,13 +278,13 @@
                         <label for="semester">Semester</label>
                         <input type="number" name="semester" id="semester-edit"
                             class="form-control @error('semester') is-invalid @enderror">
-                        @error('semester') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        @error('semester') <span class="text-danger text-sm">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="nilai">Nilai</label>
                         <input type="number" step="any" name="nilai" id="nilai-edit"
                             class="form-control @error('nilai') is-invalid @enderror">
-                        @error('nilai') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        @error('nilai') <span class="text-danger text-sm">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -312,28 +314,28 @@
                             <label for="tahun">Tahun</label>
                             <input type="number" name="tahun" id="tahun-edit"
                                 class="form-control @error('tahun') is-invalid @enderror">
-                            @error('tahun') <span class="invalid-feedback">{{ $message }}</span>
+                            @error('tahun') <span class="text-danger text-sm">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="kegiatan">Kegiatan</label>
                             <input type="text" step="any" name="kegiatan" id="kegiatan-edit"
                                 class="form-control @error('kegiatan') is-invalid @enderror">
-                            @error('kegiatan') <span class="invalid-feedback">{{ $message }}</span>
+                            @error('kegiatan') <span class="text-danger text-sm">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="tugas">Tugas</label>
                             <input type="text" step="any" name="tugas" id="tugas-edit"
                                 class="form-control @error('tugas') is-invalid @enderror">
-                            @error('tugas') <span class="invalid-feedback">{{ $message }}</span>
+                            @error('tugas') <span class="text-danger text-sm">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="nilai">Nilai</label>
                             <input type="number" step="any" name="nilai" id="nilai-edit-project"
                                 class="form-control @error('nilai') is-invalid @enderror">
-                            @error('nilai') <span class="invalid-feedback">{{ $message }}</span>
+                            @error('nilai') <span class="text-danger text-sm">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -347,6 +349,57 @@
     </div>
 </div>
 
+@endsection
+
+@section('footer')
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script>
+    Highcharts.chart('chartNilai', {
+    chart: {
+        type: 'areaspline'
+    },
+    title: {
+        text: 'Chart Nilai Semester Mahasiswa'
+    },
+    // legend: {
+    //     layout: 'vertical',
+    //     align: 'left',
+    //     verticalAlign: 'top',
+    //     x: 150,
+    //     y: 100,
+    //     floating: true,
+    //     borderWidth: 1,
+    //     backgroundColor:
+    //         Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
+    // },
+    xAxis: {
+        categories: {!!json_encode($semester)!!}
+    },
+    yAxis: {
+        title: {
+            text: 'Nilai'
+        },
+        max: 4
+    },
+    tooltip: {
+        shared: true,
+        valueSuffix: ' units'
+    },
+    credits: {
+        enabled: false
+    },
+    plotOptions: {
+        areaspline: {
+            fillOpacity: 0.5
+        }
+    },
+    series: [{
+        name: 'Semester',
+        data: {!!json_encode($nilai)!!}
+    }]
+});
+
+</script>
 @endsection
 
 @push('scripts')

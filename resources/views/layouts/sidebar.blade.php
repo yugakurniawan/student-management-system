@@ -12,6 +12,7 @@
                         </ul>
                     </div>
                 </li>
+                <li><a href="{{ url('/meetings') }}"><i class="lnr lnr-home"></i> <span>meetings</span></a></li>
             </ul>
         </nav>
     </div>

@@ -29,4 +29,9 @@ class Student extends Model
 
         return asset('images/'.$this->avatar);
     }
+
+    public function meetings()
+    {
+        return $this->belongsToMany(Meeting::class);
+    }
 }
