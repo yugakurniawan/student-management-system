@@ -23,18 +23,15 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-return view('home');
+Route::group(['middleware' => ['web', 'guest']], function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/postlogin', [AuthController::class, 'postlogin']);
 });
-
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/postlogin', [AuthController::class, 'postlogin']);
-Route::get('/logout', [AuthController::class, 'logout']);
-
 
 Route::group(['middleware' => ['web', 'auth']], function () {
 
-    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/logout', [AuthController::class, 'logout']);
+    Route::get('/', [DashboardController::class, 'index']);
 
     Route::get('/students/{student}/profile', [StudentsController::class, 'profile']);
     Route::resource('students', StudentsController::class);

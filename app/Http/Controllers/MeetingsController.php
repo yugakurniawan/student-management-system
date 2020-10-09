@@ -73,8 +73,7 @@ class MeetingsController extends Controller
      */
     public function edit(Meeting $meeting)
     {
-        $meetings = \App\Models\Student::find($student);
-        return view('meetings.edit', compact('student'));
+        return view('meetings.edit', compact('meeting'));
     }
 
     /**
@@ -88,33 +87,19 @@ class MeetingsController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'universitas' => 'required',
-            'fakultas' => 'required',
-            'jurusan' => 'required',
-            'prodi' => 'required',
-            'angkatan' => 'required',
-            'telp' => 'required'
+            'student_id' => 'required',
+        ],[
+            'student_id.required' => 'Peserta meeting harus diisi'
         ]);
-
-        Student::where('id', $student->id)
-          ->update([
-              'nama' => $request->nama,
-              'universitas' => $request->universitas,
-              'angkatan' => $request->angkatan,
-              'fakultas' => $request->fakultas,
-              'jurusan' => $request->jurusan,
-              'prodi' => $request->prodi,
-              'angkatan' => $request->angkatan,
-              'telp' => $request->telp,
-              'avatar' => $request->avatar
-              ]);
-
-              if($request->hasFile('avatar')){
-                  $request->file('avatar')->move('images/',$request->file('avatar')->getClientOriginalName());
-                  $student->avatar = $request->file('avatar')->getClientOriginalName();
-                  $student->save();
-              }
-              return redirect('/meetings')->with('status', 'Data Mahasiswa Berhasil Diperbarui!');
+        $meeting->update(['nama' => $request->nama]);
+        MeetingStudent::where('meeting_id', $meeting->id)->delete();
+        foreach($request->student_id as $student){
+            MeetingStudent::create([
+                'meeting_id' => $meeting->id,
+                'student_id' => $student
+            ]);
+        }
+        return redirect('/meetings')->with('status', 'Meeting Berhasil Perbarui!');
     }
 
     /**
