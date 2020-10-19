@@ -14,7 +14,7 @@
                             <div class="profile-header">
                                 <div class="overlay"></div>
                                 <div class="profile-main">
-                                    <img src="{{$student->getAvatar()}}" class="img-circle" alt="Avatar">
+                                    <img src="{{$student->getAvatar()}}" class="img-circle" style="width:100px;height:100px" alt="Avatar">
                                     <h3 class="name">{{ $student->nama }}</h3>
                                     <span class="online-status status-available">Available</span>
                                 </div>
@@ -149,6 +149,7 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
+                                        <div id="chartNilai"></div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tab-bottom-left2">
@@ -248,9 +249,9 @@
                                             </tbody>
                                         </table>
                                         <!-- END TABBED CONTENT -->
+                                        <!-- tempat chart project -->
                                     </div>
                                 </div>
-                                <div id="chartNilai"></div>
                                 <!-- END RIGHT COLUMN -->
                             </div>
                         </div>

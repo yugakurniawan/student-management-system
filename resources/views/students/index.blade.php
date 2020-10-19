@@ -28,7 +28,7 @@
                                         <th scope="col">Nama</th>
                                         <th scope="col">Universitas</th>
                                         <th scope="col">Angkatan</th>
-                                        <th scope="col">aksi</th>
+                                        <th scope="col" width="400px">aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -47,6 +47,8 @@
                                                 @method('delete')
                                                 @csrf
                                             </form>
+                                        <a href="/students/cetak1/{{$student->id}}" class="btn btn-warning btn-sm">Cetak 1</a>
+                                        <a href="/students/cetak2/{{$student->id}}" class="btn btn-warning btn-sm">Cetak 2</a>
                                         </td>
                                     </tr>
                                     @endforeach

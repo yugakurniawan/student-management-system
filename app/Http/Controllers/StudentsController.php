@@ -142,4 +142,14 @@ class StudentsController extends Controller
         return view('students.profile', compact('student','semester','nilai'));
 
     }
+
+    public function cetak1(Student $student)
+    {
+        return view('students.cetak1', compact('student'));
+    }
+
+    public function cetak2(Student $student)
+    {
+        return view('students.cetak2', compact('student'));
+    }
 }

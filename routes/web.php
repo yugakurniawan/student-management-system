@@ -34,6 +34,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/', [DashboardController::class, 'index']);
 
     Route::get('/students/{student}/profile', [StudentsController::class, 'profile']);
+    Route::get('/students/cetak1/{student}', [StudentsController::class, 'cetak1']);
+    Route::get('/students/cetak2/{student}', [StudentsController::class, 'cetak2']);
     Route::resource('students', StudentsController::class);
 
     Route::get('/nilai/{score}', [ScoreController::class, 'show']);
