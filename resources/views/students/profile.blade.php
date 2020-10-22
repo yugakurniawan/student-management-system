@@ -332,17 +332,22 @@
                                                     <td align="center">Rata-rata</td>
                                                     <td>
                                                         @php
-                                                        $total = 0;
-                                                        foreach ($student->meeting_student as $meeting_student) {
-                                                            $hadir = 0;
-                                                            foreach($meeting_student->kehadiran as $kehadiran){
-                                                                if ($kehadiran->status == 1) {
-                                                                    $hadir++;
-                                                                }
-                                                            };
-                                                            $total += ($hadir/count($meeting_student->meeting->jadwal)) * 100;
+                                                        try {
+                                                            $total = 0;
+                                                            foreach ($student->meeting_student as $meeting_student) {
+                                                                $hadir = 0;
+                                                                foreach($meeting_student->kehadiran as $kehadiran){
+                                                                    if ($kehadiran->status == 1) {
+                                                                        $hadir++;
+                                                                    }
+                                                                };
+                                                                $total += ($hadir/count($meeting_student->meeting->jadwal)) * 100;
+                                                            }
+                                                            echo $total / count($student->meeting_student)."%";
+
+                                                        } catch (\Throwable $th) {
+                                                            echo 0;
                                                         }
-                                                        echo $total / count($student->meeting_student)."%";
                                                         @endphp
                                                     </td>
                                                     <td></td>
