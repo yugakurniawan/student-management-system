@@ -467,9 +467,7 @@
         //         Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
         // },
         xAxis: {
-            categories: {
-                !!json_encode($semester) !!
-            },
+            categories: {!!json_encode($semester) !!},
             min: 1
         },
         yAxis: {
@@ -492,9 +490,7 @@
         },
         series: [{
             name: 'Semester',
-            data: {
-                !!json_encode($nilai) !!
-            }
+            data: {!!json_encode($nilai) !!}
         }]
     });
 
