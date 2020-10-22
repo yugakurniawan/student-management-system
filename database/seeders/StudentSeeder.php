@@ -21,6 +21,8 @@ class StudentSeeder extends Seeder
             'prodi' => 'Psikologi',
             'jurusan' => 'Psikologi',
             'angkatan' => '2014',
+            'tempat_lahir' => 'Medan',
+            'tgl_lahir' => '1995-05-02',
             'alamat' => 'Rungkut indah',
             'telp' => '08123456789',
         ]);
@@ -32,6 +34,8 @@ class StudentSeeder extends Seeder
             'prodi' => 'Ilmu Komunikasi',
             'jurusan' => 'Ilmu Komunikasi',
             'angkatan' => '2014',
+            'tempat_lahir' => 'Lamongan',
+            'tgl_lahir' => '1995-05-02',
             'alamat' => 'Pasar Besar',
             'telp' => '08123456788',
         ]);

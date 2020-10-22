@@ -16,7 +16,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="window.print()">
     <img src="/print_area_kajsdjkawdoilmasdmlamwdipmqwd/IJAZAH DESIGN DEPAN.png"
         style="position:absolute; width:210mm; height:297mm; top:0; z-index:-1;">
     <div style="position:absolute; width:210mm; height:297mm; top:0; z-index:1;">
@@ -25,6 +25,14 @@
         </div>
         <div style="text-align:center">
             <img src="{{$student->getAvatar()}}" style="width:4cm;height:6cm; position: relative; top:750px;" alt="Avatar">
+        </div>
+        <div style="text-align:center">
+            <span style="font-size: 20pt; position: relative; top:250px;"
+        class="font-weight-bold">{{ $student->ao }}</span>
+        </div>
+        <div style="text-align:center">
+            <span style="font-size: 20pt; position: relative; top:365px;"
+        class="font-weight-bold">{{ $student->as }}</span>
         </div>
     </div>
 </body>

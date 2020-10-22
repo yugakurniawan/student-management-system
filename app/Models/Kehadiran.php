@@ -14,4 +14,9 @@ class Kehadiran extends Model
     {
         return $this->belongsTo(MeetingStudent::class);
     }
+
+    public function jadwal()
+    {
+        return $this->belongsTo(Jadwal::class);
+    }
 }

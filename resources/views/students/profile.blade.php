@@ -14,23 +14,38 @@
                             <div class="profile-header">
                                 <div class="overlay"></div>
                                 <div class="profile-main">
-                                    <img src="{{$student->getAvatar()}}" class="img-circle" style="width:100px;height:100px" alt="Avatar">
+                                    <img src="{{$student->getAvatar()}}" class="img-circle"
+                                        style="width:100px;height:100px" alt="Avatar">
                                     <h3 class="name">{{ $student->nama }}</h3>
                                     <span class="online-status status-available">Available</span>
                                 </div>
                                 <div class="profile-stat">
                                     <div class="row">
                                         <div class="col-md-3 stat-item">
-                                            45 <span>IPK</span>
+                                            @php
+                                            $ipk = 0;
+                                            foreach ($student->scores as $value) {
+                                            $ipk += $value->nilai;
+                                            }
+                                            echo $ipk / count($student->scores);
+                                            @endphp <span>GPA</span>
                                         </div>
                                         <div class="col-md-3 stat-item">
-                                            15 <span>Kehadiran</span>
+                                            {{ count($student->projects) }}
+                                            <span>Projects</span>
                                         </div>
                                         <div class="col-md-3 stat-item">
-                                            2 <span>Projects</span>
+                                            5 <span>Attendance</span>
                                         </div>
                                         <div class="col-md-3 stat-item">
-                                            2174 <span>Points</span>
+                                            @php
+                                            $total = 0;
+                                            foreach ($student->projects as $value) {
+                                            $total += $value->nilai;
+                                            }
+                                            echo $total
+                                            @endphp
+                                            <span>Points</span>
                                         </div>
                                     </div>
                                 </div>
@@ -46,8 +61,13 @@
                                         <li>Jurusan <span>{{ $student->jurusan }}</span></li>
                                         <li>Prodi <span>{{ $student->prodi }}</span></li>
                                         <li>Angkatan<span>{{ $student->angkatan }}</span></li>
+                                        <li>Tempat Lahir<span>{{ $student->tempat_lahir }}</span></li>
+                                        <li>Tanggal
+                                            Lahir<span>{{ date("d F Y", strtotime($student->tgl_lahir)) }}</span></li>
                                         <li>Alamat<span>{{ $student->alamat }}</span></li>
                                         <li>Telp<span>{{ $student->telp }}</span></li>
+                                        <li>Achievement Organization<span>{{ $student->ao }}</span></li>
+                                        <li>Achievement Study<span>{{ $student->as }}</span></li>
                                     </ul>
                                 </div>
 
@@ -67,9 +87,10 @@
                             <!-- TABBED CONTENT -->
                             <div class="custom-tabs-line tabs-line-bottom left-aligned">
                                 <ul class="nav" role="tablist">
-                                    <li class="active"><a href="#tab-bottom-left1" role="tab" data-toggle="tab">Recent
-                                            Activity</a></li>
+                                    <li class="active"><a href="#tab-bottom-left1" role="tab" data-toggle="tab">Academic
+                                            Achievement</a></li>
                                     <li><a href="#tab-bottom-left2" role="tab" data-toggle="tab">Projects </a></li>
+                                    <li><a href="#tab-bottom-left3" role="tab" data-toggle="tab">Attendance </a></li>
                                 </ul>
                             </div>
                             <div class="tab-content">
@@ -246,6 +267,78 @@
                                                     </td>
                                                 </tr>
                                                 @endforeach
+                                                <tr class="bg-primary">
+                                                    <td colspan="3" align="center">Total Nilai</td>
+                                                    <td>
+                                                        @php
+                                                        $total = 0;
+                                                        foreach ($student->projects as $value) {
+                                                        $total += $value->nilai;
+                                                        }
+                                                        echo $total
+                                                        @endphp
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!-- END TABBED CONTENT -->
+                                        <!-- tempat chart project -->
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab-bottom-left3">
+                                    <div class="table-responsive">
+
+                                        <table class="table project-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Meeting</th>
+                                                    <th>Kehadiran</th>
+                                                    <th>Opsi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($student->meeting_student as $meeting_student)
+                                                <tr>
+                                                    <td>{{ $meeting_student->meeting->nama }}</td>
+                                                    <td>
+                                                        @php
+                                                        $hadir = 0;
+                                                        foreach($meeting_student->kehadiran as $kehadiran){
+                                                        if ($kehadiran->status == 1) {
+                                                        $hadir++;
+                                                        }
+                                                        };
+                                                        @endphp
+                                                        {{ $hadir }}/{{ count($meeting_student->meeting->jadwal) }}
+                                                        ({{ ($hadir/count($meeting_student->meeting->jadwal)) * 100 }}%)
+                                                    </td>
+                                                    <td>
+                                                        <a href="/detail-kehadiran/{{ $meeting_student->id }}"
+                                                            class="btn btn-sm btn-success">Detail
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                                <tr class="bg-primary">
+                                                    <td align="center">Rata-rata</td>
+                                                    <td>
+                                                        @php
+                                                        $total = 0;
+                                                        foreach ($student->meeting_student as $meeting_student) {
+                                                            $hadir = 0;
+                                                            foreach($meeting_student->kehadiran as $kehadiran){
+                                                                if ($kehadiran->status == 1) {
+                                                                    $hadir++;
+                                                                }
+                                                            };
+                                                            $total += ($hadir/count($meeting_student->meeting->jadwal)) * 100;
+                                                        }
+                                                        echo $total / count($student->meeting_student)."%";
+                                                        @endphp
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <!-- END TABBED CONTENT -->
@@ -356,50 +449,54 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script>
     Highcharts.chart('chartNilai', {
-    chart: {
-        type: 'areaspline'
-    },
-    title: {
-        text: 'Chart Nilai Semester Mahasiswa'
-    },
-    // legend: {
-    //     layout: 'vertical',
-    //     align: 'left',
-    //     verticalAlign: 'top',
-    //     x: 150,
-    //     y: 100,
-    //     floating: true,
-    //     borderWidth: 1,
-    //     backgroundColor:
-    //         Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
-    // },
-    xAxis: {
-        categories: {!!json_encode($semester)!!},
-        min: 1
-    },
-    yAxis: {
-        title: {
-            text: 'Nilai'
+        chart: {
+            type: 'areaspline'
         },
-        max: 4
-    },
-    tooltip: {
-        shared: true,
-        valueSuffix: ' units'
-    },
-    credits: {
-        enabled: false
-    },
-    plotOptions: {
-        areaspline: {
-            fillOpacity: 0.5
-        }
-    },
-    series: [{
-        name: 'Semester',
-        data: {!!json_encode($nilai)!!}
-    }]
-});
+        title: {
+            text: 'Chart Nilai Semester Mahasiswa'
+        },
+        // legend: {
+        //     layout: 'vertical',
+        //     align: 'left',
+        //     verticalAlign: 'top',
+        //     x: 150,
+        //     y: 100,
+        //     floating: true,
+        //     borderWidth: 1,
+        //     backgroundColor:
+        //         Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
+        // },
+        xAxis: {
+            categories: {
+                !!json_encode($semester) !!
+            },
+            min: 1
+        },
+        yAxis: {
+            title: {
+                text: 'Nilai'
+            },
+            max: 4
+        },
+        tooltip: {
+            shared: true,
+            valueSuffix: ' units'
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            areaspline: {
+                fillOpacity: 0.5
+            }
+        },
+        series: [{
+            name: 'Semester',
+            data: {
+                !!json_encode($nilai) !!
+            }
+        }]
+    });
 
 </script>
 @endsection

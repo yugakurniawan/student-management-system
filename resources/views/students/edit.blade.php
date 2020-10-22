@@ -57,6 +57,20 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="tempat_lahir" class="col-sm-2 col-form-label">Tempat Lahir</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir"
+                                            value="{{ $student->tempat_lahir }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="tgl_lahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
+                                            value="{{ $student->tgl_lahir }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="alamat" name="alamat"
@@ -68,6 +82,20 @@
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="telp" name="telp"
                                             value="{{ $student->telp }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="ao" class="col-sm-2 col-form-label">Achievement Organization</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="ao" name="ao"
+                                            value="{{ $student->ao }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="as" class="col-sm-2 col-form-label">Achievement Study</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="as" name="as"
+                                            value="{{ $student->as }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">

@@ -33,5 +33,12 @@ class Student extends Model
     public function meetings()
     {
         return $this->belongsToMany(Meeting::class);
+
     }
+
+    public function meeting_student()
+    {
+        return $this->hasMany(MeetingStudent::class);
+    }
+
 }

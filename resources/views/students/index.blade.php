@@ -39,16 +39,17 @@
                                         <td>{{ $student->universitas}}</td>
                                         <td>{{ $student->angkatan}}</td>
                                         <td>
-                                            <a href="/students/{{ $student->id}}/profile"
-                                                class="btn btn-info btn-sm">Detail</a>
+                                            <a href="/students/{{ $student->id}}/profile" class="btn btn-info btn-sm">
+                                                Detail
+                                            </a>
+                                            <a href="/students/cetak1/{{$student->id}}" target="_blank" class="btn btn-warning btn-sm">Cetak 1</a>
+                                            <a href="/students/cetak2/{{$student->id}}" target="_blank" class="btn btn-warning btn-sm">Cetak 2</a>
                                             <a href="/students/{{ $student->id}}" class="btn btn-danger btn-sm"
                                                 onclick="event.preventDefault(); $(this).siblings('form').submit();">Hapus</a>
                                             <form action="/students/{{$student->id}}" method="post">
                                                 @method('delete')
                                                 @csrf
                                             </form>
-                                        <a href="/students/cetak1/{{$student->id}}" class="btn btn-warning btn-sm">Cetak 1</a>
-                                        <a href="/students/cetak2/{{$student->id}}" class="btn btn-warning btn-sm">Cetak 2</a>
                                         </td>
                                     </tr>
                                     @endforeach

@@ -21,8 +21,12 @@ class CreateStudentsTable extends Migration
             $table->string('jurusan');
             $table->string('prodi');
             $table->char('angkatan');
+            $table->string('tempat_lahir');
+            $table->date('tgl_lahir');
             $table->text('alamat');
             $table->char('telp');
+            $table->String('ao')->nullable();
+            $table->String('as')->nullable();
             $table->string('avatar')->nullable();
             $table->timestamps();
         });

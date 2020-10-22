@@ -28,11 +28,13 @@ class SemesterRule implements Rule
     public function passes($attribute, $value)
     {
         $student = Student::find($this->id);
+
         foreach ($student->scores as $item) {
             if ($value == $item->semester) {
                 return false;
             }
         }
+        return true;
     }
 
     /**

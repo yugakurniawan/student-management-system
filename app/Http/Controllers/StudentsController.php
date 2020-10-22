@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MeetingStudent;
 use App\Models\Student;
 use App\Models\Score;
 use Illuminate\Http\Request;
@@ -106,7 +107,11 @@ class StudentsController extends Controller
               'jurusan' => $request->jurusan,
               'prodi' => $request->prodi,
               'angkatan' => $request->angkatan,
+              'tempat_lahir' => $request->tempat_lahir,
+              'tgl_lahir' => $request->tgl_lahir,
               'telp' => $request->telp,
+              'ao' => $request->ao,
+              'as' => $request->as,
               'avatar' => $request->avatar
               ]);
 
@@ -139,6 +144,16 @@ class StudentsController extends Controller
             $nilai[] = $scr->nilai;
         }
 
+        // foreach($student->meeting_student as $meeting_student) {
+        //     $hadir = 0;
+        //     foreach($meeting_student->kehadiran as $kehadiran){
+        //         if ($kehadiran->status == 1) {
+        //             $hadir++;
+        //         }
+        //     };
+        //     dd($hadir);
+        // };
+
         return view('students.profile', compact('student','semester','nilai'));
 
     }
@@ -151,5 +166,9 @@ class StudentsController extends Controller
     public function cetak2(Student $student)
     {
         return view('students.cetak2', compact('student'));
+    }
+
+    public function detail_kehadiran(MeetingStudent $meeting_student) {
+        return view('students.detail-kehadiran', compact('meeting_student'));
     }
 }
