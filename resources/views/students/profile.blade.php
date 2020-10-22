@@ -39,7 +39,25 @@
                                             <span>Projects</span>
                                         </div>
                                         <div class="col-md-3 stat-item">
-                                            5 <span>Attendance</span>
+                                            @php
+                                            try {
+                                                $total = 0;
+                                                foreach ($student->meeting_student as $meeting_student) {
+                                                    $hadir = 0;
+                                                    foreach($meeting_student->kehadiran as $kehadiran){
+                                                        if ($kehadiran->status == 1) {
+                                                            $hadir++;
+                                                        }
+                                                    };
+                                                    $total += ($hadir/count($meeting_student->meeting->jadwal)) * 100;
+                                                }
+                                                echo $total / count($student->meeting_student)."%";
+
+                                            } catch (\Throwable $th) {
+                                                echo 0;
+                                            }
+                                            @endphp
+                                            <span>Attendance</span>
                                         </div>
                                         <div class="col-md-3 stat-item">
                                             @php
