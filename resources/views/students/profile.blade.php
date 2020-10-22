@@ -23,11 +23,15 @@
                                     <div class="row">
                                         <div class="col-md-3 stat-item">
                                             @php
-                                            $ipk = 0;
-                                            foreach ($student->scores as $value) {
-                                            $ipk += $value->nilai;
+                                            try {
+                                                $ipk = 0;
+                                                    foreach ($student->scores as $value) {
+                                                    $ipk += $value->nilai;
+                                                echo $ipk / count($student->scores);
+                                                }
+                                            } catch(\Throwable $th){
+                                                echo 0;
                                             }
-                                            echo $ipk / count($student->scores);
                                             @endphp <span>GPA</span>
                                         </div>
                                         <div class="col-md-3 stat-item">
