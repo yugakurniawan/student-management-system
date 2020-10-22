@@ -27,7 +27,7 @@
                                                 $ipk = 0;
                                                     foreach ($student->scores as $value) {
                                                     $ipk += $value->nilai;
-                                                echo $ipk / count($student->scores);
+                                                echo number_format((float)($ipk,2,'.',""); / count($student->scores);
                                                 }
                                             } catch(\Throwable $th){
                                                 echo 0;
