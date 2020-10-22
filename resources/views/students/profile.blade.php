@@ -307,12 +307,16 @@
                                                     <td>{{ $meeting_student->meeting->nama }}</td>
                                                     <td>
                                                         @php
-                                                        $hadir = 0;
-                                                        foreach($meeting_student->kehadiran as $kehadiran){
-                                                        if ($kehadiran->status == 1) {
-                                                        $hadir++;
+                                                        try {
+                                                            $hadir = 0;
+                                                            foreach($meeting_student->kehadiran as $kehadiran){
+                                                            if ($kehadiran->status == 1) {
+                                                            $hadir++;
+                                                            }
+                                                            };
+                                                        } catch (\Throwable $th) {
+                                                            echo 0;
                                                         }
-                                                        };
                                                         @endphp
                                                         {{ $hadir }}/{{ count($meeting_student->meeting->jadwal) }}
                                                         ({{ ($hadir/count($meeting_student->meeting->jadwal)) * 100 }}%)
