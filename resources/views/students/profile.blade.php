@@ -24,14 +24,15 @@
                                         <div class="col-md-3 stat-item">
                                             @php
                                             try {
-                                                $ipk = 0;
-                                                    foreach ($student->scores as $value) {
-                                                    $ipk += $value->nilai;
-                                                $avg = $ipk / count($student->scores);
-                                                echo number_format((float)($avg,2,'.',''));
-                                                }
+                                            $ipk = 0;
+                                            foreach ($student->scores as $value) {
+                                            $ipk += $value->nilai;
+                                            }
+
+                                            $avg = $ipk / count($student->scores);
+                                            echo number_format((float) $avg, 2, '.', '');
                                             } catch(\Throwable $th){
-                                                echo 0;
+                                            echo 0;
                                             }
                                             @endphp <span>GPA</span>
                                         </div>
@@ -42,18 +43,17 @@
                                         <div class="col-md-3 stat-item">
                                             @php
                                             try {
-                                                $total = 0;
-                                                foreach ($student->meeting_student as $meeting_student) {
-                                                    $hadir = 0;
-                                                    foreach($meeting_student->kehadiran as $kehadiran){
+                                                    $total = 0;
+                                                    foreach ($student->meeting_student as $meeting_student) {
+                                                        $hadir = 0;
+                                                        foreach($meeting_student->kehadiran as $kehadiran){
                                                         if ($kehadiran->status == 1) {
-                                                            $hadir++;
+                                                        $hadir++;
                                                         }
                                                     };
-                                                    $total += ($hadir/count($meeting_student->meeting->jadwal)) * 100;
+                                                $total += ($hadir/count($meeting_student->meeting->jadwal)) * 100;
                                                 }
                                                 echo $total / count($student->meeting_student)."%";
-
                                             } catch (\Throwable $th) {
                                                 echo 0;
                                             }
@@ -64,7 +64,7 @@
                                             @php
                                             $total = 0;
                                             foreach ($student->projects as $value) {
-                                            $total += $value->nilai;
+                                                $total += $value->nilai;
                                             }
                                             echo $total
                                             @endphp
@@ -296,7 +296,7 @@
                                                         @php
                                                         $total = 0;
                                                         foreach ($student->projects as $value) {
-                                                        $total += $value->nilai;
+                                                            $total += $value->nilai;
                                                         }
                                                         echo $total
                                                         @endphp
@@ -329,12 +329,12 @@
                                                         try {
                                                             $hadir = 0;
                                                             foreach($meeting_student->kehadiran as $kehadiran){
-                                                            if ($kehadiran->status == 1) {
-                                                            $hadir++;
-                                                            }
+                                                                if ($kehadiran->status == 1) {
+                                                                    $hadir++;
+                                                                }
                                                             };
                                                         } catch (\Throwable $th) {
-                                                            echo 0;
+                                                        echo 0;
                                                         }
                                                         @endphp
                                                         {{ $hadir }}/{{ count($meeting_student->meeting->jadwal) }}
@@ -352,20 +352,21 @@
                                                     <td>
                                                         @php
                                                         try {
-                                                            $total = 0;
-                                                            foreach ($student->meeting_student as $meeting_student) {
-                                                                $hadir = 0;
-                                                                foreach($meeting_student->kehadiran as $kehadiran){
-                                                                    if ($kehadiran->status == 1) {
-                                                                        $hadir++;
-                                                                    }
-                                                                };
-                                                                $total += ($hadir/count($meeting_student->meeting->jadwal)) * 100;
-                                                            }
-                                                            echo $total / count($student->meeting_student)."%";
+                                                        $total = 0;
+                                                        foreach ($student->meeting_student as $meeting_student) {
+                                                        $hadir = 0;
+                                                        foreach($meeting_student->kehadiran as $kehadiran){
+                                                        if ($kehadiran->status == 1) {
+                                                        $hadir++;
+                                                        }
+                                                        };
+                                                        $total += ($hadir/count($meeting_student->meeting->jadwal)) *
+                                                        100;
+                                                        }
+                                                        echo $total / count($student->meeting_student)."%";
 
                                                         } catch (\Throwable $th) {
-                                                            echo 0;
+                                                        echo 0;
                                                         }
                                                         @endphp
                                                     </td>
@@ -499,7 +500,9 @@
         //         Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
         // },
         xAxis: {
-            categories: {!!json_encode($semester) !!},
+            categories: {
+                !!json_encode($semester) !!
+            },
             min: 1
         },
         yAxis: {
@@ -522,7 +525,9 @@
         },
         series: [{
             name: 'Semester',
-            data: {!!json_encode($nilai) !!}
+            data: {
+                !!json_encode($nilai) !!
+            }
         }]
     });
 
