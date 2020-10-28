@@ -16,7 +16,7 @@
                     <div class="col-lg-3 order-lg-2">
                         <div class="card-profile-image">
                             <a href="#">
-                                <img src="{{url('/')}}/argon/img/theme/team-4.jpg" class="rounded-circle">
+                                <img src="{{$student->getAvatar()}}" class="rounded-circle" style="width:150px;height:150px" alt="Avatar">
                             </a>
                         </div>
                     </div>

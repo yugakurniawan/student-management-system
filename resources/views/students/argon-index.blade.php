@@ -23,7 +23,7 @@
                             <th scope="col">Nama</th>
                             <th scope="col">Universitas</th>
                             <th scope="col">Angkatan</th>
-                            <th scope="col" width="400px">aksi</th>
+                            <th scope="col">aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,31 +34,19 @@
                             <td>{{ $student->universitas}}</td>
                             <td>{{ $student->angkatan}}</td>
                             <td>
-                                <a href="/students/{{ $student->id}}/profile" class="btn btn-info btn-sm">
-                                    Detail
-                                </a>
-                                <a href="/students/cetak1/{{$student->id}}" target="_blank"
-                                    class="btn btn-warning btn-sm">Cetak 1</a>
-                                <a href="/students/cetak2/{{$student->id}}" target="_blank"
-                                    class="btn btn-warning btn-sm">Cetak 2</a>
-                                <a href="/students/{{ $student->id}}" class="btn btn-danger btn-sm"
-                                    onclick="event.preventDefault(); $(this).siblings('form').submit();">Hapus</a>
-                                <form action="/students/{{$student->id}}" method="post">
-                                    @method('delete')
-                                    @csrf
-                                </form>
-                            </td>
-                            <td class="text-right">
                                 <div class="dropdown">
-                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
+                                    <a class="btn btn-sm btn-primary" href="#" role="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        Opsi <i class="fas fa-caret-down"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                         <a class="dropdown-item" href="/students/{{ $student->id}}/profile">Detail</a>
-                                        <a class="dropdown-item" href="/students/cetak1/{{$student->id}}" target="_blank">Cetak Depan</a>
-                                        <a class="dropdown-item" href="/students/cetak2/{{$student->id}}" target="_blank">Cetak Belakang</a>
-                                        <a class="dropdown-item" href="/students/{{ $student->id}}" class="btn btn-danger btn-sm"
+                                        <a class="dropdown-item" href="/students/cetak1/{{$student->id}}"
+                                            target="_blank">Cetak Depan</a>
+                                        <a class="dropdown-item" href="/students/cetak2/{{$student->id}}"
+                                            target="_blank">Cetak Belakang</a>
+                                        <a class="dropdown-item" href="/students/{{ $student->id}}"
+                                            class="btn btn-danger btn-sm"
                                             onclick="event.preventDefault(); $(this).siblings('form').submit();">Hapus</a>
                                         <form action="/students/{{$student->id}}" method="post">
                                             @method('delete')
