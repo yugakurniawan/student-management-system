@@ -17,7 +17,7 @@ class MeetingsController extends Controller
     public function index()
     {
         $meetings = Meeting::all();
-        return view('meetings.index', compact('meetings'));
+        return view('meetings.argon-index', compact('meetings'));
     }
 
     /**
@@ -27,7 +27,7 @@ class MeetingsController extends Controller
      */
     public function create()
     {
-        return view('meetings.create',['students'=> Student::all()]);
+        return view('meetings.argon-create',['students'=> Student::all()]);
     }
 
     /**
@@ -62,7 +62,7 @@ class MeetingsController extends Controller
      */
     public function show(Meeting $meeting)
     {
-        return view('meetings.detail', compact('meeting'));
+        return view('meetings.argon-detail', compact('meeting'));
     }
 
     /**
@@ -73,7 +73,7 @@ class MeetingsController extends Controller
      */
     public function edit(Meeting $meeting)
     {
-        return view('meetings.edit', compact('meeting'));
+        return view('meetings.argon-edit', compact('meeting'));
     }
 
     /**

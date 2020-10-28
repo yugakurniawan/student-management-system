@@ -16,7 +16,6 @@
                             <div class="col-6">
 
                                 <form method="POST" action="/meetings">
-                                    @csrf
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-2 col-form-label">Nama Meeting</label>
                                         <div class="col-sm-6">

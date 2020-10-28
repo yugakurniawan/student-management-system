@@ -26,7 +26,7 @@ class JadwalController extends Controller
      */
     public function create($id)
     {
-        return view('jadwal.create',['meeting_id'=>$id]);
+        return view('jadwal.argon-create',['meeting_id'=>$id]);
     }
 
     /**
@@ -62,7 +62,7 @@ class JadwalController extends Controller
      */
     public function show(Jadwal $jadwal)
     {
-        return view('jadwal.detail',compact('jadwal'));
+        return view('jadwal.argon-detail',compact('jadwal'));
     }
 
     /**

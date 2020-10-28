@@ -16,7 +16,6 @@
                             <div class="col-6">
 
                                 <form method="POST" action="/jadwal">
-                                    @csrf
                                     <input type="hidden" name="meeting_id" value="{{ $meeting_id }}">
                                     <div class="form-group row">
                                         <label for="jadwal" class="col-sm-2 col-form-label">Jadwal</label>

@@ -9,7 +9,7 @@ class AuthController extends Controller
 {
     public function login()
     {
-        return view('auths.login');
+        return view('auths.argon-login');
     }
 
     public function postlogin(Request $request)

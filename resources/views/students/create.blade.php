@@ -12,7 +12,6 @@
                             <div class="col-6">
 
                                 <form method="POST" action="/students">
-                                    @csrf
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                                         <div class="col-sm-6">
@@ -67,6 +66,26 @@
                                                 class="form-control @error('angkatan') is-invalid @enderror"
                                                 id="angkatan" name="angkatan" value="{{ old('angkatan') }}">
                                             @error('angkatan') <div class="invalid-feedback">{{$message}}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="tempat_lahir" class="col-sm-2 col-form-label">Tempat Lahir</label>
+                                        <div class="col-sm-6">
+                                            <input type="text"
+                                                class="form-control @error('tempat_lahir') is-invalid @enderror"
+                                                id="tempat_lahir" name="tempat_lahir" value="{{ old('tempat_lahir') }}">
+                                            @error('tempat_lahir') <div class="invalid-feedback">{{$message}}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="tgl_lahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+                                        <div class="col-sm-6">
+                                            <input type="date"
+                                                class="form-control @error('tgl_lahir') is-invalid @enderror"
+                                                id="tgl_lahir" name="tgl_lahir" value="{{ old('tgl_lahir') }}">
+                                            @error('tgl_lahir') <div class="invalid-feedback">{{$message}}</div>
                                             @enderror
                                         </div>
                                     </div>

@@ -21,7 +21,7 @@ class StudentsController extends Controller
         }else{
             $students = \App\Models\Student::all();
         }
-        return view('students.index', compact('students'));
+        return view('students.argon-index', compact('students'));
     }
 
     /**
@@ -31,7 +31,7 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        return view('students.argon-create');
     }
 
     /**
@@ -76,7 +76,7 @@ class StudentsController extends Controller
     public function edit(Student $student)
     {
         $students = \App\Models\Student::find($student);
-        return view('students.edit', compact('student'));
+        return view('students.argon-edit', compact('student'));
     }
 
     /**
@@ -154,7 +154,7 @@ class StudentsController extends Controller
         //     dd($hadir);
         // };
 
-        return view('students.profile', compact('student','semester','nilai'));
+        return view('students.argon-profile', compact('student','semester','nilai'));
 
     }
 
@@ -165,10 +165,17 @@ class StudentsController extends Controller
 
     public function cetak2(Student $student)
     {
-        return view('students.cetak2', compact('student'));
+        $semester[] = null;
+        $nilai[] = null;
+        foreach($student->scores as $scr){
+            $semester[] = $scr->semester;
+            $nilai[] = $scr->nilai;
+        }
+
+        return view('students.cetak2', compact('student','semester','nilai'));
     }
 
     public function detail_kehadiran(MeetingStudent $meeting_student) {
-        return view('students.detail-kehadiran', compact('meeting_student'));
+        return view('students.argon-detail-kehadiran', compact('meeting_student'));
     }
 }
