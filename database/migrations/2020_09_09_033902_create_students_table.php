@@ -15,18 +15,16 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->char('user_id');
+            $table->string('nisn')->unique();
             $table->string('nama');
-            $table->string('universitas');
-            $table->string('fakultas');
-            $table->string('jurusan');
-            $table->string('prodi');
-            $table->char('angkatan');
+            $table->string('jenis_kelamin');
+            $table->string('agama');
+            $table->string('email');
             $table->string('tempat_lahir');
             $table->date('tgl_lahir');
             $table->text('alamat');
             $table->char('telp');
-            $table->String('ao')->nullable();
-            $table->String('as')->nullable();
             $table->string('avatar')->nullable();
             $table->timestamps();
         });

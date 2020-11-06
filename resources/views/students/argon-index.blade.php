@@ -1,3 +1,4 @@
+
 @extends('layouts.argon-index')
 
 @section('container')
@@ -19,10 +20,11 @@
                 <table class="table align-items-center table-dark table-flush">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">#</th>
+                            <th scope="col">NISN</th>
                             <th scope="col">Nama</th>
-                            <th scope="col">Universitas</th>
-                            <th scope="col">Angkatan</th>
+                            <th scope="col">Jenis Kelamin</th>
+                            <th scope="col">Agama</th>
                             <th scope="col">aksi</th>
                         </tr>
                     </thead>
@@ -30,9 +32,10 @@
                         @foreach ($students as $student)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $student->nisn}}</td>
                             <td><a href="/students/{{ $student->id}}/profile">{{ $student->nama}}</a></td>
-                            <td>{{ $student->universitas}}</td>
-                            <td>{{ $student->angkatan}}</td>
+                            <td>{{ $student->jenis_kelamin}}</td>
+                            <td>{{ $student->agama}}</td>
                             <td>
                                 <div class="dropdown">
                                     <a class="btn btn-sm btn-primary" href="#" role="button" data-toggle="dropdown"
@@ -128,3 +131,4 @@
 </div> --}}
 
 @endsection
+

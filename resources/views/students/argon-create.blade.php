@@ -25,6 +25,15 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
+                                        <label for="nisn" class="form-control-label">NISN</label>
+                                        <input type="text" class="form-control @error('nisn') is-invalid @enderror"
+                                            id="nisn" name="nisn" value="{{ old('nisn') }}"
+                                            placeholder="1714321006">
+                                        @error('nisn') <div class="invalid-feedback">{{$message}}</div> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
                                         <label for="nama" class="form-control-label">Nama</label>
                                         <input type="text" class="form-control @error('nama') is-invalid @enderror"
                                             id="nama" name="nama" value="{{ old('nama') }}"
@@ -32,54 +41,26 @@
                                         @error('nama') <div class="invalid-feedback">{{$message}}</div> @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="universitas" class="form-control-label">Universitas</label>
-                                        <input type="text"
-                                            class="form-control @error('universitas') is-invalid @enderror"
-                                            id="universitas" name="universitas" value="{{ old('universitas') }}"
-                                            placeholder="Universitas Bhayangkara">
-                                        @error('universitas') <div class="invalid-feedback">{{$message}}</div>
-                                        @enderror
-                                    </div>
-                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="fakultas" class="form-control-label">Fakultas</label>
-                                        <input type="text" class="form-control @error('fakultas') is-invalid @enderror"
-                                            id="fakultas" name="fakultas" value="{{ old('fakultas') }}"
-                                            placeholder="Teknik">
-                                        @error('fakultas') <div class="invalid-feedback">{{$message}}</div>
-                                        @enderror
+                                        <label for="jenis_kelamin" class="form-control-label">Jenis Kelamin</label>
+                                        <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
+                                            <option value="Laki-Laki">Laki-Laki</option>
+                                            <option value="Perempuan">Perempuan</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="jurusan" class="form-control-label">Jurusan</label>
-                                        <input type="text" class="form-control @error('jurusan') is-invalid @enderror"
-                                            id="jurusan" name="jurusan" value="{{ old('jurusan') }}"
-                                            placeholder="Teknik Informatika">
-                                        @error('jurusan') <div class="invalid-feedback">{{$message}}</div>
+                                        <label for="agama" class="form-control-label">Agama</label>
+                                        <input type="text" class="form-control @error('agama') is-invalid @enderror"
+                                            id="agama" name="agama" value="{{ old('agama') }}"
+                                            placeholder="Islam">
+                                        @error('agama') <div class="invalid-feedback">{{$message}}</div>
                                         @enderror
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <label for="prodi" class="form-control-label">Prodi</label>
-                                    <input type="text" class="form-control @error('prodi') is-invalid @enderror"
-                                        id="prodi" name="prodi" value="{{ old('prodi') }}" placeholder="S1 S.KOM">
-                                    @error('prodi') <div class="invalid-feedback">{{$message}}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="angkatan" class="form-control-label">Angkatan</label>
-                                    <input type="text" class="form-control @error('angkatan') is-invalid @enderror"
-                                        id="angkatan" name="angkatan" value="{{ old('angkatan') }}" placeholder="2017">
-                                    @error('angkatan') <div class="invalid-feedback">{{$message}}</div>
-                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -88,7 +69,17 @@
                         <h6 class="heading-small text-muted mb-4">Contact information</h6>
                         <div class="pl-lg-4">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email" class="form-control-label">Email</label>
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                            id="email" name="email" value="{{ old('email') }}"
+                                            placeholder="yugakurniawan@yahoo.com">
+                                        @error('email') <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="alamat" class="form-control-label">Alamat</label>
                                         <input type="text" class="form-control @error('alamat') is-invalid @enderror"

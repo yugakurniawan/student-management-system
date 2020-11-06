@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\MeetingStudent;
 use App\Models\Student;
+use App\Models\User;
 use App\Models\Score;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class StudentsController extends Controller
@@ -43,16 +45,26 @@ class StudentsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'nisn' => 'required',
             'nama' => 'required',
-            'universitas' => 'required',
-            'fakultas' => 'required',
-            'prodi' => 'required',
-            'jurusan' => 'required',
-            'angkatan' => 'required',
+            'jenis_kelamin' => 'required',
+            'agama' => 'required',
+            'tempat_lahir' => 'required',
+            'tgl_lahir' => 'required',
+            'alamat' => 'required',
             'telp' => 'required',
         ]);
 
-        Student::create($request->all());
+        $user = new User;
+        $user->role = 'student';
+        $user->name = $request->nama;
+        $user->email = $request->email;
+        $user->password = bcrypt('password');
+        $user->remember_token = Str::random(10);
+        $user->save();
+
+        $request->request->add(['user_id' => $user->id ]);
+        $student = Student::create($request->all());
         return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Ditambahkan!');
     }
 
@@ -89,29 +101,25 @@ class StudentsController extends Controller
     public function update(Request $request, Student $student)
     {
         $request->validate([
+            'nisn' => 'required',
             'nama' => 'required',
-            'universitas' => 'required',
-            'fakultas' => 'required',
-            'jurusan' => 'required',
-            'prodi' => 'required',
-            'angkatan' => 'required',
-            'telp' => 'required'
+            'jenis_kelamin' => 'required',
+            'agama' => 'required',
+            'tempat_lahir' => 'required',
+            'tgl_lahir' => 'required',
+            'alamat' => 'required',
+            'telp' => 'required',
         ]);
 
         Student::where('id', $student->id)
           ->update([
+              'nisn' => $request->nama,
               'nama' => $request->nama,
-              'universitas' => $request->universitas,
-              'angkatan' => $request->angkatan,
-              'fakultas' => $request->fakultas,
-              'jurusan' => $request->jurusan,
-              'prodi' => $request->prodi,
-              'angkatan' => $request->angkatan,
+              'jenis_kelamin' => $request->jenis_kelamin,
+              'agama' => $request->agama,
               'tempat_lahir' => $request->tempat_lahir,
               'tgl_lahir' => $request->tgl_lahir,
               'telp' => $request->telp,
-              'ao' => $request->ao,
-              'as' => $request->as,
               'avatar' => $request->avatar
               ]);
 
