@@ -7,7 +7,7 @@
     <!-- Mask -->
     <span class="mask bg-gradient-default opacity-8"></span>
     <!-- Header container -->
-    <div class="container-fluid d-flex align-items-center">
+    <div class="container d-flex align-items-center">
         <div class="row">
             {{-- <div class="col-lg-7 col-md-10"> --}}
             <div class="card card-profile mt-3">
