@@ -11,14 +11,9 @@ class Student extends Model
     protected $guarded = [];
     use HasFactory;
 
-    public function scores()
+    public function subject()
     {
-        return $this->hasMany(Score::class);
-    }
-
-    public function projects()
-    {
-        return $this->hasMany(Project::class);
+        return $this->belongsToMany(Subject::class);
     }
 
     public function getAvatar()

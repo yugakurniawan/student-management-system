@@ -27,7 +27,14 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
+        Gate::define('admin-student', function($user){
+            if ($user->role == 'admin' || $user->role == 'student'){
+                return true;
+            }
+        });
+
         Gate::define('admin', function($user){
+            // dd($user);
             return $user->role == 'admin';
         });
 

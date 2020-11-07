@@ -1,3 +1,6 @@
+@can('admin-student')
+
+@endcan
 
 @extends('layouts.argon-index')
 

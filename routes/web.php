@@ -30,7 +30,7 @@ Route::group(['middleware' => ['web', 'guest']], function () {
 
 Route::group(['middleware' => ['web', 'auth']], function () {
 
-    Route::group(['middleware' => ['can:admin']], function () {
+    Route::group(['middleware' => ['can:admin-student']], function () {
 
         Route::get('/logout', [AuthController::class, 'logout']);
         Route::get('/', [DashboardController::class, 'index']);
