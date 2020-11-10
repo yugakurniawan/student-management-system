@@ -36,6 +36,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::get('/', [DashboardController::class, 'index']);
 
         Route::get('/students/{student}/profile', [StudentsController::class, 'profile']);
+        Route::post('/students/{student}/nilai', [StudentsController::class, 'tambahnilai']);
+        Route::patch('/students/{student}/nilai}', [StudentsController::class, 'editnilai']);
         Route::get('/students/cetak1/{student}', [StudentsController::class, 'cetak1']);
         Route::get('/students/cetak2/{student}', [StudentsController::class, 'cetak2']);
         Route::get('/detail-kehadiran/{meeting_student}', [StudentsController::class, 'detail_kehadiran']);

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MeetingStudent;
 use App\Models\Student;
 use App\Models\User;
-use App\Models\Score;
+use App\Models\Subject;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -143,27 +143,31 @@ class StudentsController extends Controller
         return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Dihapus!');
     }
 
-    public function profile(Student $student)
+    public function profile(Request $request, Student $student)
     {
-        $semester[] = null;
-        $nilai[] = null;
-        foreach($student->scores as $scr){
-            $semester[] = $scr->semester;
-            $nilai[] = $scr->nilai;
+
+        $subject = Subject::all();
+        return view('students.argon-profile', compact('student', 'subject'));
+
+    }
+
+    public function tambahnilai(Request $request, Student $student)
+    {
+        if ($student->subject()->where('subject_id', $request->subject)->exists()) {
+            return redirect()->back()->with('error', 'Data Pelajaran Sudah Ada');
         }
 
-        // foreach($student->meeting_student as $meeting_student) {
-        //     $hadir = 0;
-        //     foreach($meeting_student->kehadiran as $kehadiran){
-        //         if ($kehadiran->status == 1) {
-        //             $hadir++;
-        //         }
-        //     };
-        //     dd($hadir);
-        // };
+        $student->subject()->attach($request->subject, ['nilai' => $request->nilai]);
 
-        return view('students.argon-profile', compact('student','semester','nilai'));
+        return redirect()->back()->with('status', 'Nilai Berhasil Ditambahkan!');
 
+    }
+
+    public function editnilai(Request $request, Student $student)
+    {
+        $student->subject()->update($request);
+
+        return redirect()->back()->with('status', 'Berhasil Memperbarui Data');
     }
 
     public function cetak1(Student $student)

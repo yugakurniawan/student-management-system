@@ -13,7 +13,7 @@ class CreateStudentSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('student_subjects', function (Blueprint $table) {
+        Schema::create('student_subject', function (Blueprint $table) {
             $table->id();
             $table->char('student_id');
             $table->char('subject_id');
@@ -29,6 +29,6 @@ class CreateStudentSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_subjects');
+        Schema::dropIfExists('student_subject');
     }
 }

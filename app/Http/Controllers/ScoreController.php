@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Score;
-use App\Rules\SemesterRule;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+// use App\Rules\SemesterRule;
+// use Illuminate\Validation\Rule;
 
 class ScoreController extends Controller
 {
     public function store(Request $request, $id)
     {
         $data = $request->validate([
-            'semester'  => ['required','numeric','min:1','max:14', new SemesterRule($id)],
+            'semester'  => ['required','numeric','min:1','max:14'],
             'nilai'     => ['required','numeric','min:0','max:4']
         ]);
 
