@@ -66,6 +66,7 @@ class StudentsController extends Controller
         $request->request->add(['user_id' => $user->id ]);
         $student = Student::create($request->all());
         return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Ditambahkan!');
+
     }
 
     /**

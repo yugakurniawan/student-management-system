@@ -30,11 +30,12 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('admin-student', function($user){
             if ($user->role == 'admin' || $user->role == 'student'){
                 return true;
+                // ini untuk login keduanya
             }
         });
 
         Gate::define('admin', function($user){
-            // dd($user);
+            // ini admin
             return $user->role == 'admin';
         });
 
@@ -42,4 +43,6 @@ class AppServiceProvider extends ServiceProvider
             return $user->role == 'student';
         });
     }
+
+    //maaf salah bu , disini maksudnya
 }

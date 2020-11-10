@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Subject;
 use Illuminate\Database\Seeder;
 
 class SubjectSeeder extends Seeder
@@ -13,6 +14,15 @@ class SubjectSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Subject::create([
+            'kode' => 'MD001',
+            'nama' => 'Matematika Dasar',
+            'semester' => 'Ganjil'
+        ]);
+        Subject::create([
+            'kode' => 'BI001',
+            'nama' => 'Bahasa Indonesia',
+            'semester' => 'Ganjil'
+        ]);
     }
 }

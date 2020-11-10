@@ -177,7 +177,7 @@
                                                 <td>{{$mapel->kode}}</td>
                                                 <td>{{$mapel->nama}}</td>
                                                 <td>{{$mapel->semester}}</td>
-                                                <td><a href="#" class="nilai" data-type="text" data-pk="{{$subject->id}}" data-url="/post" data-title="Masukkan Nilai">{{$mapel->pivot->nilai}}</a></td>
+                                                <td>{{$mapel->pivot->nilai}}</td>
                                                 <td>
                                                     <a data-toggle="modal" href="#edit-nilai"
                                                         data-id="{{ $mapel->id }}"
@@ -333,63 +333,10 @@
     </div>
 </div>
 
-<!-- Modal 2-->
-<div class="modal fade" id="edit-project" tabindex="-1" aria-labelledby="edit-projectLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="edit-projectLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="formEditProject" action="" method="post">
-                @csrf @method('patch')
-                <div class="modal-body">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="tahun">Tahun</label>
-                            <input type="number" name="tahun" id="tahun-edit"
-                                class="form-control @error('tahun') is-invalid @enderror">
-                            @error('tahun') <span class="text-danger text-sm">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="kegiatan">Kegiatan</label>
-                            <input type="text" step="any" name="kegiatan" id="kegiatan-edit"
-                                class="form-control @error('kegiatan') is-invalid @enderror">
-                            @error('kegiatan') <span class="text-danger text-sm">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="tugas">Tugas</label>
-                            <input type="text" step="any" name="tugas" id="tugas-edit"
-                                class="form-control @error('tugas') is-invalid @enderror">
-                            @error('tugas') <span class="text-danger text-sm">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="nilai">Nilai</label>
-                            <input type="number" step="any" name="nilai" id="nilai-edit-project"
-                                class="form-control @error('nilai') is-invalid @enderror">
-                            @error('nilai') <span class="text-danger text-sm">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
 @endsection
 
 @section('footer')
-<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+{{-- <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script> --}}
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script>
 Highcharts.chart('chartNilai', {
@@ -423,15 +370,11 @@ Highcharts.chart('chartNilai', {
     },
     series: [{
         name: 'Nilai',
-        data: {!!json_encode($data)!!}
+        data: [80,90]
 
     }]
 });
 
-$(document).ready(function() {
-    $('.nilai').editable();
-});
+
 </script>
-{{-- <script>
-</script> --}}
 @endsection
