@@ -1,5 +1,10 @@
 @extends('layouts.argon-index')
 
+@section('styles')
+<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+<link href="bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+@endsection
+
 @section('container')
 
 <div class="header pb-6 d-flex align-items-center"
@@ -172,7 +177,7 @@
                                                 <td>{{$mapel->kode}}</td>
                                                 <td>{{$mapel->nama}}</td>
                                                 <td>{{$mapel->semester}}</td>
-                                                <td>{{ $mapel->pivot->nilai}}</td>
+                                                <td><a href="#" class="nilai" data-type="text" data-pk="{{$subject->id}}" data-url="/post" data-title="Masukkan Nilai">{{$mapel->pivot->nilai}}</a></td>
                                                 <td>
                                                     <a data-toggle="modal" href="#edit-nilai"
                                                         data-id="{{ $mapel->id }}"
@@ -383,86 +388,50 @@
 
 @endsection
 
-{{-- @section('footer')
+@section('footer')
+<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script>
-    Highcharts.chart('chartNilai', {
-        chart: {
-            type: 'areaspline'
-        },
+Highcharts.chart('chartNilai', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Laporan Nilai Siswa'
+    },
+    xAxis: {
+        categories: {!!json_encode($categories)!!},
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
         title: {
-            text: 'Chart Nilai Semester Mahasiswa'
-        },
-        // legend: {
-        //     layout: 'vertical',
-        //     align: 'left',
-        //     verticalAlign: 'top',
-        //     x: 150,
-        //     y: 100,
-        //     floating: true,
-        //     borderWidth: 1,
-        //     backgroundColor:
-        //         Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
-        // },
-        xAxis: {
-            categories:
-                {!!json_encode($semester) !!}
-            ,
-            min: 1
-        },
-        yAxis: {
-            title: {
-                text: 'Nilai'
-            },
-            max: 4
-        },
-        tooltip: {
-            shared: true,
-            valueSuffix: ' units'
-        },
-        credits: {
-            enabled: false
-        },
-        plotOptions: {
-            areaspline: {
-                fillOpacity: 0.5
-            }
-        },
-        series: [{
-            name: 'Semester',
-            data:
-                {!!json_encode($nilai) !!}
-        }]
-    });
+            text: 'nilai'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Nilai',
+        data: {!!json_encode($data)!!}
 
+    }]
+});
+
+$(document).ready(function() {
+    $('.nilai').editable();
+});
 </script>
-@endsection --}}
-
-{{-- @push('scripts')
-<script>
-    $(document).ready(function () {
-        $(".editNilai").click(function (event) {
-            event.preventDefault();
-            const idNilai = $(this).data('id');
-            $.get('/nilai/' + idNilai, function (response) {
-                $("#formEditNilai").attr('action', '/nilai/' + idNilai);
-                $("#semester-edit").val(response.data.semester);
-                $("#nilai-edit").val(response.data.nilai);
-            });
-        });
-
-        $(".editProject").click(function (event) {
-            event.preventDefault();
-            const idProject = $(this).data('id');
-            $.get('/project/' + idProject, function (response) {
-                $("#formEditProject").attr('action', '/project/' + idProject);
-                $("#tahun-edit").val(response.data.tahun);
-                $("#kegiatan-edit").val(response.data.kegiatan);
-                $("#tugas-edit").val(response.data.tugas);
-                $("#nilai-edit-project").val(response.data.nilai);
-            });
-        });
-    });
-
-</script>
-@endpush --}}
+{{-- <script>
+</script> --}}
+@endsection

@@ -147,8 +147,18 @@ class StudentsController extends Controller
     {
 
         $subject = Subject::all();
-        return view('students.argon-profile', compact('student', 'subject'));
 
+        $categories = [];
+        $data = [];
+        foreach ($subject as $mapel) {
+            if ($student->subject()->wherePivot('subject_id', $mapel->id)->first()) {
+                $categories[] = $mapel->nama;
+                $data[] = $student->subject()->wherePivot('subject_id', $mapel->id)->first()->pivot->nilai;
+            }
+        }
+        // dd($data);
+
+        return view('students.argon-profile', compact('student', 'subject', 'categories', 'data'));
     }
 
     public function tambahnilai(Request $request, Student $student)
@@ -163,31 +173,4 @@ class StudentsController extends Controller
 
     }
 
-    public function editnilai(Request $request, Student $student)
-    {
-        $student->subject()->update($request);
-
-        return redirect()->back()->with('status', 'Berhasil Memperbarui Data');
-    }
-
-    public function cetak1(Student $student)
-    {
-        return view('students.cetak1', compact('student'));
-    }
-
-    public function cetak2(Student $student)
-    {
-        $semester[] = null;
-        $nilai[] = null;
-        foreach($student->scores as $scr){
-            $semester[] = $scr->semester;
-            $nilai[] = $scr->nilai;
-        }
-
-        return view('students.cetak2', compact('student','semester','nilai'));
-    }
-
-    public function detail_kehadiran(MeetingStudent $meeting_student) {
-        return view('students.argon-detail-kehadiran', compact('meeting_student'));
-    }
 }
