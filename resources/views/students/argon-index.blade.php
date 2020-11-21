@@ -53,7 +53,7 @@
                                             target="_blank">Cetak Belakang</a>
                                         <a class="dropdown-item" href="/students/{{ $student->id}}"
                                             class="btn btn-danger btn-sm"
-                                            onclick="event.preventDefault(); $(this).siblings('form').submit();">Hapus</a>
+                                            onclick="event.preventDefault(); $(this).siblings('form').submit(); return confirm('Yakin mau dihapus ?')">Hapus</a>
                                         <form action="/students/{{$student->id}}" method="post">
                                             @method('delete')
                                             @csrf

@@ -17,12 +17,15 @@ class SubjectSeeder extends Seeder
         Subject::create([
             'kode' => 'MD001',
             'nama' => 'Matematika Dasar',
-            'semester' => 'Ganjil'
+            'semester' => 'Ganjil',
+            'teacher_id' => '1'
         ]);
+
         Subject::create([
             'kode' => 'BI001',
             'nama' => 'Bahasa Indonesia',
-            'semester' => 'Ganjil'
+            'semester' => 'Ganjil',
+            'teacher_id' => '2'
         ]);
     }
 }

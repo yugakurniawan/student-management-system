@@ -9,6 +9,7 @@ use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\MeetingsController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KehadiranController;
+use App\Http\Controllers\TeacherController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,9 +37,12 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::get('/', [DashboardController::class, 'index']);
 
         Route::get('/students/{student}/profile', [StudentsController::class, 'profile']);
-        Route::post('/students/{student}/nilai', [StudentsController::class, 'tambahnilai']);
-        Route::patch('/students/{student}/nilai}', [StudentsController::class, 'editnilai']);
         Route::resource('students', StudentsController::class);
+
+        Route::post('/students/{student}/nilai', [StudentsController::class, 'tambahnilai']);
+        Route::delete('/students/{student}/{subject}/delete-nilai', [StudentsController::class, 'destroynilai']);
+
+        Route::get('/teachers/{teacher}/profile', [TeacherController::class, 'profile']);
 
 
     });

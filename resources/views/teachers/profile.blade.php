@@ -20,12 +20,12 @@
                 <img src="{{url('/')}}/argon/img/theme/img-1-1000x600.jpg" alt="Image placeholder" class="card-img-top">
                 <div class="row justify-content-center">
                     <div class="col-lg-3 order-lg-2">
-                        <div class="card-profile-image">
+                        {{-- <div class="card-profile-image">
                             <a href="#">
-                                <img src="{{$student->getAvatar()}}" class="rounded-circle"
+                                <img src="#" class="rounded-circle"
                                     style="width:150px;height:150px" alt="Avatar">
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
@@ -35,35 +35,12 @@
                     </div>
                 </div>
                 <div class="card-body pt-0">
-                    <div class="row">
-                        <div class="col">
-                            <div class="card-profile-stats d-flex justify-content-center">
-                                <div>
-                                    <span class="heading">
-                                    </span>
-                                    <span class="description">GPA</span>
-                                </div>
-                                <div>
-                                    <span class="heading"> {{ $student->subject->count() }} </span>
-                                    <span class="description">Mata Pelajaran</span>
-                                </div>
-                                <div>
-                                    <span class="heading"></span>
-                                    <span class="description">Attendance</span>
-                                </div>
-                                <div>
-                                    <span class="heading"></span>
-                                    <span class="description"> Points </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="text-center">
                         <h5 class="h3">
-                            {{ $student->nama }}<span class="font-weight-light">, 27</span>
+                            {{ $teacher->nama }}<span class="font-weight-light">, 27</span>
                         </h5>
                         <div class="h5 font-weight-300">
-                            <i class="ni location_pin mr-2"></i>{{ $student->alamat }}
+                            <i class="ni location_pin mr-2"></i>{{ $teacher->alamat }}
                         </div>
                     </div>
                 </div>
@@ -82,17 +59,7 @@
                         <li class="nav-item">
                             <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab"
                                 href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1"
-                                aria-selected="true">Academic Achievement</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab"
-                                href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2"
-                                aria-selected="false">Projects</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
-                                href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3"
-                                aria-selected="false">Attendances</a>
+                                aria-selected="true">Mata Pelajaran Yang di Ambil Oleh Guru {{ $teacher->nama }}</a>
                         </li>
                     </ul>
                 </div>
@@ -115,40 +82,22 @@
                                     </div>
                                     @endif
 
-                                    <a href="#tambah-nilai" data-toggle="modal" class="btn btn-sm btn-primary ml-3"
-                                        style="margin-bottom: 20px">Tambah Nilai</a>
-
                                     <table class="table project-table">
                                         <thead>
                                             <tr>
-                                                <th>Kode</th>
                                                 <th>Nama</th>
-                                                <th>Guru</th>
                                                 <th>Semester</th>
-                                                <th>Nilai</th>
-                                                <th>opsi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($student->subject as $mapel)
+                                            @foreach ($teacher->subject as $subject)
                                             <tr>
-                                                <td>{{$mapel->kode}}</td>
-                                                <td>{{$mapel->nama}}</td>
-                                                <td><a href="/teachers/{{$mapel->teacher_id}}/profile">{{$mapel->teacher->nama}}</a></td>
-                                                <td>{{$mapel->semester}}</td>
-                                                <td>{{$mapel->pivot->nilai}}</td>
-                                                <td>
-                                                    <a href="/students/{{$student->id}}/{{$mapel->id}}/delete-nilai" class="btn btn-danger btn-sm"
-                                                        onclick="event.preventDefault(); $(this).siblings('form').submit(); return confirm('Yakin mau dihapus ?')">Hapus</a>
-                                                    <form action="/students/{{ $student->id }}/{{$mapel->id}}/delete-nilai" method="post">
-                                                        @csrf @method('delete')
-                                                    </form>
-                                                </td>
+                                                <td>{{ $subject->nama }}</td>
+                                                <td>{{ $subject->semester}}</td>
                                             </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    <div id="chartNilai"></div>
                                 </div>
                             </div>
                         </div>
@@ -161,15 +110,15 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Student profile </h3>
+                            <h3 class="mb-0">Teacher profile </h3>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="/students/{{$student->id}}/edit" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="#" class="btn btn-sm btn-primary">Edit</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form>
+                    {{-- <form>
                         <h6 class="heading-small text-muted mb-4">User information</h6>
                         <div class="pl-lg-4">
                             <div class="row">
@@ -294,136 +243,11 @@
                         </div>
                         <hr class="my-4" />
                         <!-- Description -->
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal Tambah Nilai-->
-<div class="modal fade" id="tambah-nilai" tabindex="-1" aria-labelledby="tambah-nilaiLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="tambah-nilaiLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="formTambahNilai" action="/students/{{$student->id}}/nilai" method="post">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="subject">Mata Pelajaran</label>
-                        <select class="form-control" id="subject" name="subject" id="subject"
-                            class="form-control @error('subject') is-invalid @enderror">
-                            @foreach ($subject as $subjects)
-                            <option value="{{$subjects->id}}">{{ $subjects->nama }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="nilai">Nilai</label>
-                        <input type="number" step="any" name="nilai" id="nilai"
-                            class="form-control @error('nilai') is-invalid @enderror">
-                        @error('nilai') <span class="text-danger text-sm">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save
-                        changes</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-{{-- <!-- Modal Edit Nilai-->
-<div class="modal fade" id="edit-nilai" tabindex="-1" aria-labelledby="edit-nilaiLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="edit-nilaiLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="formEditNilai" action="/students/{{$student->id}}/edit-nilai" method="POST">
-                @method('patch')
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="subject">Mata Pelajaran</label>
-                        <select class="form-control" id="subject" name="subject" id="subject"
-                            class="form-control @error('subject') is-invalid @enderror">
-                            @foreach ($subject as $subject2)
-                            <option value="{{ $subjects->id }}">{{ $subjects->nama }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="nilai">Nilai</label>
-                        <input type="number" step="any" name="nilai" id="nilai"
-                            class="form-control @error('nilai') is-invalid @enderror">
-                        @error('nilai') <span class="text-danger text-sm">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save
-                        changes</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div> --}}
-
-@endsection
-
-@section('footer')
-{{-- <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script> --}}
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script>
-    Highcharts.chart('chartNilai', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Laporan Nilai Siswa'
-        },
-        xAxis: {
-            categories: {!!json_encode($categories) !!},
-            crosshair: true
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'nilai'
-            }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: 'Nilai',
-            data: {!!json_encode($data) !!}
-
-        }]
-    });
-
-</script>
 @endsection

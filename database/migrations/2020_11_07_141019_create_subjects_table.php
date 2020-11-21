@@ -18,6 +18,7 @@ class CreateSubjectsTable extends Migration
             $table->char('kode');
             $table->string('nama');
             $table->string('semester');
+            $table->integer('teacher_id');
             $table->timestamps();
         });
     }

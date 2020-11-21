@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MeetingStudent;
 use App\Models\Student;
 use App\Models\User;
 use App\Models\Subject;
@@ -105,22 +104,34 @@ class StudentsController extends Controller
             'nisn' => 'required',
             'nama' => 'required',
             'jenis_kelamin' => 'required',
-            'agama' => 'required',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required',
+            'agama' => 'required',
             'alamat' => 'required',
+            'email' => 'required',
             'telp' => 'required',
+            'ayah' => 'required',
+            'ibu' => 'required',
+            'pekerjaan_ibu' => 'required',
+            'status_ortu' => 'required',
         ]);
 
         Student::where('id', $student->id)
           ->update([
-              'nisn' => $request->nama,
+              'nisn' => $request->nisn,
               'nama' => $request->nama,
               'jenis_kelamin' => $request->jenis_kelamin,
-              'agama' => $request->agama,
               'tempat_lahir' => $request->tempat_lahir,
               'tgl_lahir' => $request->tgl_lahir,
+              'agama' => $request->agama,
+              'alamat' => $request->alamat,
+              'email' => $request->email,
               'telp' => $request->telp,
+              'ayah' => $request->ayah,
+              'pekerjaan_ayah' => $request->pekerjaan_ayah,
+              'ibu' => $request->ibu,
+              'pekerjaan_ibu' => $request->pekerjaan_ibu,
+              'status_ortu' => $request->status_ortu,
               'avatar' => $request->avatar
               ]);
 
@@ -173,5 +184,39 @@ class StudentsController extends Controller
         return redirect()->back()->with('status', 'Nilai Berhasil Ditambahkan!');
 
     }
+
+        public function editnilai(Request $request, Student $student)
+        {
+
+            $students = \App\Models\Student::find($student);
+            $subject = Subject::all();
+            return view('students.edit-nilai', compact('student', 'subject'));
+
+        }
+
+        public function updatenilai(Request $request, Student $student)
+        {
+
+            $request->validate([
+                        'mata_pelajaran' => 'required',
+                        'nilai' => 'required',
+                    ]);
+
+            Student::where('id', $student->id)
+                      ->update([
+                          'mata_pelajaran' => $request->mata_pelajaran,
+                          'nilai' => $request->nilai
+                      ]);
+
+                    return redirect()->back()->with('status', 'Nilai Mahasiswa Berhasil Diperbarui!');
+
+        }
+
+        public function destroynilai(Student $student, Subject $subject)
+        {
+            $students = Student::find($student->id);
+            $students->subject()->detach($subject->id);
+            return redirect()->back()->with('status', 'Nilai Berhasil Dihapus!');
+        }
 
 }
