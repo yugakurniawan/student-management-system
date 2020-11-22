@@ -26,15 +26,16 @@ class Student extends Model
         return asset('images/'.$this->avatar);
     }
 
-    public function meetings()
+    public function average()
     {
-        return $this->belongsToMany(Meeting::class);
+        $total = 0;
+        $jumlah = 0;
+        foreach ($this->subject as $subject) {
+            $total += $subject->pivot->nilai;
+            $jumlah++;
+        }
 
-    }
-
-    public function meeting_student()
-    {
-        return $this->hasMany(MeetingStudent::class);
+        return $jumlah == 0 ? 0 : round($total/$jumlah);
     }
 
 }

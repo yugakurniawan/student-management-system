@@ -22,7 +22,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/students')}}">
                             <i class="ni ni-single-02 text-yellow"></i>
-                            <span class="nav-link-text">Data Mahasiswa</span>
+                            <span class="nav-link-text">Data Siswa</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -47,7 +47,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/students')}}">
                             <i class="ni ni-single-02 text-yellow"></i>
-                            <span class="nav-link-text">Data Mahasiswa</span>
+                            <span class="nav-link-text">Data Siswa</span>
                         </a>
                     </li>
                 </ul>

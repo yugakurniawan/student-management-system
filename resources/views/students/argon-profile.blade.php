@@ -39,8 +39,7 @@
                         <div class="col">
                             <div class="card-profile-stats d-flex justify-content-center">
                                 <div>
-                                    <span class="heading">
-                                    </span>
+                                    <span class="heading"> {{ $student->average()}}</span>
                                     <span class="description">GPA</span>
                                 </div>
                                 <div>
