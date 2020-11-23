@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Subject;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Exports\StudentsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentsController extends Controller
 {
@@ -218,5 +220,10 @@ class StudentsController extends Controller
             $students->subject()->detach($subject->id);
             return redirect()->back()->with('status', 'Nilai Berhasil Dihapus!');
         }
+
+        public function export()
+    {
+        return Excel::download(new StudentsExport, 'student.xlsx');
+    }
 
 }

@@ -32,6 +32,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::get('/', [DashboardController::class, 'index']);
 
         Route::get('/students/{student}/profile', [StudentsController::class, 'profile']);
+        Route::get('/students/export', [StudentsController::class, 'export']);
         Route::resource('students', StudentsController::class);
 
         Route::post('/students/{student}/nilai', [StudentsController::class, 'tambahnilai']);
