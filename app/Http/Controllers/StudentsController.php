@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Exports\StudentsExport;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class StudentsController extends Controller
 {
@@ -221,9 +222,17 @@ class StudentsController extends Controller
             return redirect()->back()->with('status', 'Nilai Berhasil Dihapus!');
         }
 
-        public function export()
-    {
-        return Excel::download(new StudentsExport, 'student.xlsx');
-    }
+        public function exportExcel()
+        {
+            return Excel::download(new StudentsExport, 'datasiswa.xlsx');
+        }
+
+        public function exportPDF(Student $student)
+        {
+            $students = Student::all();
+            $pdf = PDF::loadView('Exports.exportpdf', compact('students'))->setPaper('a3', 'landscape');
+            // dd($students);
+            return $pdf->download('datasiswa.pdf');
+        }
 
 }

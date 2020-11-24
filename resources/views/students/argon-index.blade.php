@@ -12,7 +12,8 @@
             <div class="card-header bg-transparent border-0">
                 <h3 class="text-white my-3">Data Mahasiswa</h3>
                 <a href="/students/create" class="btn btn-primary">Tambah Data</a>
-                <a href="{{ url('/') }}/students/export" class="btn btn-secondary">Export Excel</a>
+                <a href="{{ url('/') }}/students/exportexcel" class="btn btn-secondary">Export Excel</a>
+                <a href="{{ url('/') }}/students/exportpdf" class="btn btn-secondary">Export PDF</a>
                 @if (session('status'))
                 <div class="alert alert-success" style="margin-top:20px">
                     {{ session('status') }}
