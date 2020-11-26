@@ -25,6 +25,8 @@ class StudentsController extends Controller
         }else{
             $students = \App\Models\Student::all();
         }
+
+        // dd($students);
         return view('students.argon-index', compact('students'));
     }
 

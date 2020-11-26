@@ -85,6 +85,7 @@
     <script src="{{url('/')}}/argon/vendor/chart.js/dist/Chart.extension.js"></script>
     <!-- Argon JS -->
     <script src="{{url('/')}}/argon/js/argon.js?v=1.2.0"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @yield('footer')
     @stack('scripts')
 </body>

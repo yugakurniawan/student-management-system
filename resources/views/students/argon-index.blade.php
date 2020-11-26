@@ -54,13 +54,14 @@
                                             target="_blank">Cetak Depan</a>
                                         <a class="dropdown-item" href="/students/cetak2/{{$student->id}}"
                                             target="_blank">Cetak Belakang</a>
-                                        <a class="dropdown-item" href="/students/{{ $student->id}}"
+                                        {{-- <a class="dropdown-item" href="/students/{{ $student->id}}"
                                             class="btn btn-danger btn-sm"
                                             onclick="event.preventDefault(); $(this).siblings('form').submit(); return confirm('Yakin mau dihapus ?')">Hapus</a>
                                         <form action="/students/{{$student->id}}" method="post">
                                             @method('delete')
                                             @csrf
-                                        </form>
+                                        </form> --}}
+                                    <a class="dropdown-item delete" siswa-id="{{ $student->id }}" href="#">Hapus</a>
                                     </div>
                                 </div>
                             </td>
@@ -75,3 +76,25 @@
 
 @endsection
 
+@section('footer')
+
+    <script>
+        $('.delete').click(function(){
+        // console.log($(this).attr('id'));
+           var siswa_id = $(this).attr('siswa-id');
+           swal({
+            title: "Yakin ?",
+            text: "Mau dihapus data siswa dengan id "+siswa_id+" ??",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                window.location = "/students/"+siswa_id+"/delete";
+                }
+            });
+        });
+    </script>
+
+@endsection
