@@ -6,6 +6,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ExtracurricularController;
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\PresenceController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,6 +48,11 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
         Route::post('/students/{student}/nilai', [StudentsController::class, 'tambahnilai']);
         Route::delete('/students/{student}/{subject}/delete-nilai', [StudentsController::class, 'destroynilai']);
+
+        Route::resource('attendances', AttendanceController::class);
+        Route::resource('schedules', ScheduleController::class)->except('create');
+        Route::get('/schedules/create/{project}', [ScheduleController::class, 'create']);
+        Route::patch('/presences/{id}', [PresenceController::class, 'update'])->name('presence.update');
 
         Route::get('/teachers/{teacher}/profile', [TeacherController::class, 'profile']);
 

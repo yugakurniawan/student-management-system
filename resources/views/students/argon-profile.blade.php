@@ -247,11 +247,11 @@
                                                     @php
                                             try {
                                             $ipk = 0;
-                                            foreach ($student->extracurriculars as $value) {
+                                            foreach ($student->extracurricular as $value) {
                                             $ipk += $value->nilai;
                                             }
 
-                                            $avg = $ipk / count($student->extracurriculars);
+                                            $avg = $ipk / count($student->extracurricular);
                                             echo number_format((float) $avg, 2, '.', '');
                                             } catch(\Throwable $th){
                                             echo 0;
@@ -266,7 +266,7 @@
                                     <!-- tempat chart project -->
                                 </div>
                             </div>
-                            {{-- <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
+                            <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
                                 <div class="table-responsive">
                                     <table class="table project-table table-sm">
                                         <thead>
@@ -277,14 +277,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($student->meeting_student as $meeting_student)
+                                            @foreach ($student->attendance_student as $attendance_student)
                                             <tr>
-                                                <td>{{ $meeting_student->meeting->nama }}</td>
+                                                <td>{{ $attendance_student->attendance->nama }}</td>
                                                 <td>
                                                     @php
                                                     try {
                                                     $hadir = 0;
-                                                    foreach($meeting_student->kehadiran as $kehadiran){
+                                                    foreach($attendance_student->presence as $kehadiran){
                                                     if ($kehadiran->status == 1) {
                                                     $hadir++;
                                                     }
@@ -293,11 +293,11 @@
                                                     echo 0;
                                                     }
                                                     @endphp
-                                                    {{ $hadir }}/{{ count($meeting_student->meeting->jadwal) }}
-                                                    ({{ $hadir == 0 ? 0 : ($hadir/count($meeting_student->meeting->jadwal)) * 100 }}%)
+                                                    {{ $hadir }}/{{ count($attendance_student->attendance->schedule) }}
+                                                    ({{ $hadir == 0 ? 0 : ($hadir/count($attendance_student->attendance->schedule)) * 100 }}%)
                                                 </td>
                                                 <td>
-                                                    <a href="/detail-kehadiran/{{ $meeting_student->id }}"
+                                                    <a href="/detail-kehadiran/{{ $attendance_student->id }}"
                                                         class="btn btn-sm btn-success">Detail
                                                     </a>
                                                 </td>
@@ -309,17 +309,17 @@
                                                     @php
                                                     try {
                                                     $total = 0;
-                                                    foreach ($student->meeting_student as $meeting_student) {
+                                                    foreach ($student->attendance_student as $attendance_student) {
                                                     $hadir = 0;
-                                                    foreach($meeting_student->kehadiran as $kehadiran){
+                                                    foreach($attendance_student->presence as $kehadiran){
                                                     if ($kehadiran->status == 1) {
                                                     $hadir++;
                                                     }
                                                     };
-                                                    $total += ($hadir/count($meeting_student->meeting->jadwal)) *
+                                                    $total += ($hadir/count($attendance_student->attendance->schedule)) *
                                                     100;
                                                     }
-                                                    echo $total / count($student->meeting_student)."%";
+                                                    echo $total / count($student->attendance_student)."%";
 
                                                     } catch (\Throwable $th) {
                                                     echo 0;
@@ -333,7 +333,7 @@
                                     <!-- END TABBED CONTENT -->
                                     <!-- tempat chart project -->
                                 </div>
-                            </div> --}}
+                            </div>
 
                         </div>
                     </div>

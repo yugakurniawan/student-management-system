@@ -22,6 +22,17 @@ class Student extends Model
         return $this->hasMany(Extracurricular::class);
     }
 
+    public function attendance()
+    {
+        return $this->belongsToMany(Attendance::class);
+
+    }
+
+    public function attendance_student()
+    {
+        return $this->hasMany(AttendanceStudent::class);
+    }
+
     public function getAvatar()
     {
         if(!$this->avatar){

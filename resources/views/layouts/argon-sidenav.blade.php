@@ -26,9 +26,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/meetings') }}">
+                        <a class="nav-link" href="{{ url('/attendances') }}">
                             <i class="ni ni-pin-3 text-primary"></i>
-                            <span class="nav-link-text">Meeting</span>
+                            <span class="nav-link-text">Data Kehadiran</span>
                         </a>
                     </li>
                 </ul>
