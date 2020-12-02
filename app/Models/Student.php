@@ -17,6 +17,11 @@ class Student extends Model
 
     }
 
+    public function extracurricular()
+    {
+        return $this->hasMany(Extracurricular::class);
+    }
+
     public function getAvatar()
     {
         if(!$this->avatar){

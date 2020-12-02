@@ -5,6 +5,7 @@ use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\ExtracurricularController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,6 +37,11 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::get('/students/exportexcel', [StudentsController::class, 'exportExcel']);
         Route::get('/students/exportpdf', [StudentsController::class, 'exportPDF']);
         Route::resource('students', StudentsController::class);
+
+        Route::get('/extracurriculars/{extracurricular}', [ExtracurricularController::class, 'show']);
+        Route::post('/extracurriculars/{id}', [ExtracurricularController::class, 'store']);
+        Route::delete('/extracurriculars/{extracurricular}', [ExtracurricularController::class, 'destroy']);
+        Route::patch('/extracurriculars/{extracurricular}', [ExtracurricularController::class, 'update']);
 
         Route::post('/students/{student}/nilai', [StudentsController::class, 'tambahnilai']);
         Route::delete('/students/{student}/{subject}/delete-nilai', [StudentsController::class, 'destroynilai']);
