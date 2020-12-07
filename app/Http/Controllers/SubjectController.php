@@ -12,9 +12,14 @@ class SubjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Subject $subject)
     {
-        //
+
+        $subjects = Subject::all();
+
+
+        // dd($subjects);
+        return view('subjects.argon-index', compact('subjects'));
     }
 
     /**

@@ -30,6 +30,7 @@ class CreateStudentsTable extends Migration
             $table->string('ibu');
             $table->string('pekerjaan_ibu')->nullable();
             $table->string('status_ortu');
+            $table->string('kehadiran')->nullable();
             $table->string('avatar')->nullable();
             $table->timestamps();
         });

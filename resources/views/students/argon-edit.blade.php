@@ -174,6 +174,17 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="kehadiran" class="form-control-label">Nilai Kehadiran</label>
+                                        <input type="text"
+                                            class="form-control @error('kehadiran') is-invalid @enderror"
+                                            id="kehadiran" name="kehadiran" value="{{ $student->kehadiran }}"
+                                            placeholder="Boleh dikosongi bilang tidak ada">
+                                        @error('kehadiran') <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <hr class="my-4" />

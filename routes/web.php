@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TeacherController;
@@ -41,6 +42,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::get('/students/exportpdf', [StudentsController::class, 'exportPDF']);
         Route::get('/students/cetak2/{student}', [StudentsController::class, 'cetak2']);
         Route::resource('students', StudentsController::class);
+
+        Route::resource('subjects', SubjectController::class);
 
         Route::get('/extracurriculars/{extracurricular}', [ExtracurricularController::class, 'show']);
         Route::post('/extracurriculars/{id}', [ExtracurricularController::class, 'store']);

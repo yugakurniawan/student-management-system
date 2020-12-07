@@ -44,13 +44,13 @@
                 {{ tgl(date('Y-m-d', strtotime($student->tgl_lahir))) }}</span>
         </div>
         <div>
-            <span style="font-size: 15pt; position: relative; top:227px; left:250px">{{ $student->agama }}</span>
+            <span style="font-size: 15pt; position: relative; top:227px; left:250px">{{ $student->nisn }}</span>
         </div>
         <div>
             <span style="font-size: 15pt; position: relative; top:232px; left:250px">{{ $student->nisn }}</span>
         </div>
         <div>
-            <span style="font-size: 15pt; position: relative; top:240px; left:250px">{{ $student->email }}</span>
+            <span style="font-size: 15pt; position: relative; top:240px; left:250px">LULUS</span>
         </div>
         <div>
             <span style="font-size: 15pt; position: relative; top:36px; left:640px">{{ $tanggal2 }}</span>
@@ -60,7 +60,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th colspan="5">Kegiatan</th>
+                            <th colspan="5">Kegiatan Ekstrakulikuler</th>
                         </tr>
                         <tr>
                             <th align="center">No</th>
@@ -135,7 +135,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="chartNilai" style="height: 247px; width:8.35cm"></div>
+                <div id="chartNilai2" style="height: 247px; width:8.35cm"></div>
             </div>
         </div>
 
@@ -144,8 +144,7 @@
         </div>
 
         <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script>
-            < script >
+            <script>
                 Highcharts.chart('chartNilai', {
                     chart: {
                         type: 'column'
@@ -181,7 +180,6 @@
 
                     }]
                 });
-
         </script>
 </body>
 

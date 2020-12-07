@@ -475,6 +475,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="kehadiran" class="form-control-label">Nilai Kehadiran</label>
+                                        <input type="text" class="form-control" id="kehadiran" name="kehadiran"
+                                            value="{{ $student->kehadiran }}">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <hr class="my-4" />
                         <!-- Description -->

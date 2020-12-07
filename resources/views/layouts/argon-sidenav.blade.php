@@ -26,6 +26,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{url('/subjects')}}">
+                            <i class="ni ni-single-02 text-yellow"></i>
+                            <span class="nav-link-text">Data Mata Pelajaran</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ url('/attendances') }}">
                             <i class="ni ni-pin-3 text-primary"></i>
                             <span class="nav-link-text">Data Kehadiran</span>
