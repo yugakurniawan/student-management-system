@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Exports\StudentsExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Carbon;
 use PDF;
 
 class StudentsController extends Controller
@@ -223,6 +224,36 @@ class StudentsController extends Controller
             $students->subject()->detach($subject->id);
             return redirect()->back()->with('status', 'Nilai Berhasil Dihapus!');
         }
+
+        public function cetak2(Student $student)
+    {
+
+        $subject = Subject::all();
+
+        $categories = [];
+        $data = [];
+        foreach ($subject as $mapel) {
+            if ($student->subject()->wherePivot('subject_id', $mapel->id)->first()) {
+                $categories[] = $mapel->nama;
+                $data[] = $student->subject()->wherePivot('subject_id', $mapel->id)->first()->pivot->nilai;
+            }
+        }
+
+        $tanggal = Carbon::now()->isoFormat(' D MMMM Y');
+        $tanggal2 = Carbon::now()->isoFormat('Y');
+        // dd($data);
+
+        return view('students.cetak2', compact('student', 'subject', 'categories', 'data', 'tanggal', 'tanggal2'));
+
+        // foreach($student->subject as $ss){
+        //     $mapel = $ss->nama;
+        //     $nilai = $ss->pivot->nilai;
+        // }
+
+        // $tanggal = Carbon::now()->isoFormat(' D MMMM Y');
+
+        // return view('students.cetak2', compact('student','mapel','nilai','tanggal'));
+    }
 
         public function exportExcel()
         {

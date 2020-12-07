@@ -39,6 +39,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::get('/students/{student}/delete', [StudentsController::class, 'destroy']);
         Route::get('/students/exportexcel', [StudentsController::class, 'exportExcel']);
         Route::get('/students/exportpdf', [StudentsController::class, 'exportPDF']);
+        Route::get('/students/cetak2/{student}', [StudentsController::class, 'cetak2']);
         Route::resource('students', StudentsController::class);
 
         Route::get('/extracurriculars/{extracurricular}', [ExtracurricularController::class, 'show']);
