@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subject;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -29,7 +30,7 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('subjects.argon-create', ['teachers'=> Teacher::all()]);
     }
 
     /**
@@ -40,7 +41,25 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode' => 'required',
+            'nama' => 'required',
+            'semester' => 'required',
+            'teacher_id' => 'required',
+        ],[
+            'teacher_id.required' => 'Guru Mata Pelajaran harus diisi'
+        ]);
+        Subject::create([   'kode' => $request->kode,
+                            'nama' => $request->nama,
+                            'semester' => $request->semester,
+                            'teacher_id' => $request->teacher_id
+                        ]);
+        // foreach($request->teacher_id as $teacher){
+        //     Teacher::create([
+        //         'teacher_id' => $teacher
+        //     ]);
+        // }
+        return redirect('/subjects')->with('status', 'Mata Pelajaran Berhasil Ditambahkan!');
     }
 
     /**
@@ -85,6 +104,7 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        //
+        Subject::destroy($subject->id);
+        return redirect('/subjects')->with('status', 'Mata Pelajaran Berhasil Dihapus!');
     }
 }

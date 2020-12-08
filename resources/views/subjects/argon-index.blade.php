@@ -74,7 +74,7 @@
             })
             .then((willDelete) => {
             if (willDelete) {
-                window.location = "/students/"+subject_id+"/delete";
+                window.location = "/subjects/"+subject_id+"/delete";
                 }
             });
         });

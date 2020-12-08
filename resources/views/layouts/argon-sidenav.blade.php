@@ -26,15 +26,33 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{url('/teachers')}}">
+                            <i class="ni ni-badge text-red"></i>
+                            <span class="nav-link-text">Data Guru</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{url('/subjects')}}">
-                            <i class="ni ni-single-02 text-yellow"></i>
+                            <i class="ni ni-book-bookmark text-green"></i>
                             <span class="nav-link-text">Data Mata Pelajaran</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/attendances') }}">
-                            <i class="ni ni-pin-3 text-primary"></i>
+                            <i class="ni ni-pin-3 text-black"></i>
                             <span class="nav-link-text">Data Kehadiran</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/reports') }}">
+                            <i class="ni ni-books text-cyan"></i>
+                            <span class="nav-link-text">Laporan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/imports') }}">
+                            <i class="ni ni-cloud-upload-96 text-blue"></i>
+                            <span class="nav-link-text">Import Data</span>
                         </a>
                     </li>
                 </ul>
@@ -48,12 +66,6 @@
                         <a class="nav-link active" href="{{url('/')}}">
                             <i class="ni ni-tv-2 text-primary"></i>
                             <span class="nav-link-text">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url('/students')}}">
-                            <i class="ni ni-single-02 text-yellow"></i>
-                            <span class="nav-link-text">Data Siswa</span>
                         </a>
                     </li>
                 </ul>

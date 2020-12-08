@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Teacher;
+use App\Models\Report;
 use Illuminate\Http\Request;
 
-class TeacherController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = Teacher::all();
-
-
-        // dd($subjects);
-        return view('teachers.argon-index', compact('teachers'));
+        return view('reports.argon-index');
     }
 
     /**
@@ -28,7 +24,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        return view('teachers.argon-create');
+        //
     }
 
     /**
@@ -39,37 +35,27 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-
-        $request->validate([
-            'nama' => 'required',
-            'telp' => 'required',
-            'alamat' => 'required',
-        ]);
-
-        Teacher::create($request->all());
-        return redirect('/teachers')->with('status', 'Data Guru Berhasil Ditambahkan!');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Teacher  $teacher
+     * @param  \App\Models\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function profile(Teacher $teacher)
+    public function show(Report $report)
     {
-        $teachers = Teacher::find($teacher);
-
-        return view('teachers.profile', compact('teacher'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Teacher  $teacher
+     * @param  \App\Models\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function edit(Teacher $teacher)
+    public function edit(Report $report)
     {
         //
     }
@@ -78,10 +64,10 @@ class TeacherController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Teacher  $teacher
+     * @param  \App\Models\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teacher $teacher)
+    public function update(Request $request, Report $report)
     {
         //
     }
@@ -89,12 +75,11 @@ class TeacherController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Teacher  $teacher
+     * @param  \App\Models\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teacher $teacher)
+    public function destroy(Report $report)
     {
-        Teacher::destroy($teacher->id);
-        return redirect('/teachers')->with('status', 'Data Guru Berhasil Dihapus!');
+        //
     }
 }

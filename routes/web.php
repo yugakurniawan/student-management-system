@@ -10,6 +10,7 @@ use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\PresenceController;
+use App\Http\Controllers\ReportController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,8 +42,10 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::get('/students/exportexcel', [StudentsController::class, 'exportExcel']);
         Route::get('/students/exportpdf', [StudentsController::class, 'exportPDF']);
         Route::get('/students/cetak2/{student}', [StudentsController::class, 'cetak2']);
+        Route::get('/imports', [StudentsController::class, 'importsindex']);
         Route::resource('students', StudentsController::class);
 
+        Route::get('/subjects/{subject}/delete', [SubjectController::class, 'destroy']);
         Route::resource('subjects', SubjectController::class);
 
         Route::get('/extracurriculars/{extracurricular}', [ExtracurricularController::class, 'show']);
@@ -59,6 +62,14 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::patch('/presences/{id}', [PresenceController::class, 'update'])->name('presence.update');
 
         Route::get('/teachers/{teacher}/profile', [TeacherController::class, 'profile']);
+        Route::get('/teachers/{teacher}/delete', [TeacherController::class, 'destroy']);
+        Route::resource('teachers', TeacherController::class);
+
+        Route::get('/reports', [ReportController::class, 'index']);
+        Route::get('/reports/exportexcel', [StudentsController::class, 'exportExcel']);
+        Route::get('/reports/exportpdf', [StudentsController::class, 'exportPDF']);
+
+
 
 
     });

@@ -70,7 +70,7 @@ class StudentsController extends Controller
 
         $request->request->add(['user_id' => $user->id ]);
         $student = Student::create($request->all());
-        return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Ditambahkan!');
+        return redirect('/students')->with('status', 'Data Siswa Berhasil Ditambahkan!');
 
     }
 
@@ -146,7 +146,7 @@ class StudentsController extends Controller
                   $student->avatar = $request->file('avatar')->getClientOriginalName();
                   $student->save();
               }
-              return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Diperbarui!');
+              return redirect('/students')->with('status', 'Data Siswa Berhasil Diperbarui!');
     }
 
     /**
@@ -158,7 +158,7 @@ class StudentsController extends Controller
     public function destroy(Student $student)
     {
         Student::destroy($student->id);
-        return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Dihapus!');
+        return redirect('/students')->with('status', 'Data Siswa Berhasil Dihapus!');
     }
 
     public function profile(Request $request, Student $student)
@@ -214,7 +214,7 @@ class StudentsController extends Controller
                           'nilai' => $request->nilai
                       ]);
 
-                    return redirect()->back()->with('status', 'Nilai Mahasiswa Berhasil Diperbarui!');
+                    return redirect()->back()->with('status', 'Nilai Siswa Berhasil Diperbarui!');
 
         }
 
