@@ -49,12 +49,6 @@
                             <span class="nav-link-text">Laporan</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/imports') }}">
-                            <i class="ni ni-cloud-upload-96 text-blue"></i>
-                            <span class="nav-link-text">Import Data</span>
-                        </a>
-                    </li>
                 </ul>
 
                 @endcan
