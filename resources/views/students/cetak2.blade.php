@@ -47,7 +47,7 @@
             <span style="font-size: 15pt; position: relative; top:227px; left:250px">{{ $student->nisn }}</span>
         </div>
         <div>
-            <span style="font-size: 15pt; position: relative; top:232px; left:250px">{{ $student->nisn }}</span>
+            <span style="font-size: 15pt; position: relative; top:232px; left:250px">BAIK</span>
         </div>
         <div>
             <span style="font-size: 15pt; position: relative; top:240px; left:250px">LULUS</span>
