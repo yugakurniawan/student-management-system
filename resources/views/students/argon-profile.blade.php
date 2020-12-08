@@ -30,8 +30,8 @@
                 </div>
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
-                        <a href="#" class="btn btn-sm btn-info  mr-4 ">Connect</a>
-                        <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+                        <a href="https://instagram.com/yugakurniawan" class="btn btn-sm btn-info  mr-4 ">Connect</a>
+                        <a href="https://instagram.com/yugakurniawan" class="btn btn-sm btn-default float-right">Message</a>
                     </div>
                 </div>
                 <div class="card-body pt-0">
@@ -46,20 +46,20 @@
                                     <span class="heading"> {{ $student->subject->count() }} </span>
                                     <span class="description">Mata Pelajaran</span>
                                 </div>
-                                <div>
+                                {{-- <div>
                                     <span class="heading"></span>
                                     <span class="description">Attendance</span>
                                 </div>
                                 <div>
                                     <span class="heading"></span>
                                     <span class="description"> Points </span>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
                     <div class="text-center">
                         <h5 class="h3">
-                            {{ $student->nama }}<span class="font-weight-light">, 27</span>
+                            {{ $student->nama }}<span class="font-weight-light"></span>
                         </h5>
                         <div class="h5 font-weight-300">
                             <i class="ni location_pin mr-2"></i>{{ $student->alamat }}

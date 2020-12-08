@@ -42,7 +42,7 @@ class AttendanceController extends Controller
             'nama' => 'required',
             'student_id' => 'required',
         ],[
-            'student_id.required' => 'Peserta meeting harus diisi'
+            'student_id.required' => 'Peserta Kehadiran harus diisi'
         ]);
         $attendance = Attendance::create(['nama' => $request->nama]);
         foreach($request->student_id as $student){
@@ -51,7 +51,7 @@ class AttendanceController extends Controller
                 'student_id' => $student
             ]);
         }
-        return redirect('/attendances')->with('status', 'Meeting Berhasil Ditambahkan!');
+        return redirect('/attendances')->with('status', 'Kehadiran Berhasil Ditambahkan!');
     }
 
     /**
@@ -89,7 +89,7 @@ class AttendanceController extends Controller
             'nama' => 'required',
             'student_id' => 'required',
         ],[
-            'student_id.required' => 'Peserta meeting harus diisi'
+            'student_id.required' => 'Peserta Kehadiran harus diisi'
         ]);
         $attendance->update(['nama' => $request->nama]);
         AttendanceStudent::where('attendance_id', $attendance->id)->delete();
@@ -100,8 +100,8 @@ class AttendanceController extends Controller
             ]);
         }
 
-        // dd($meeting->students);
-        return redirect('/attendances')->with('status', 'Meeting Berhasil Perbarui!');
+        // dd($Kehadiran->students);
+        return redirect('/attendances')->with('status', 'Kehadiran Berhasil Perbarui!');
     }
 
     /**
@@ -113,6 +113,6 @@ class AttendanceController extends Controller
     public function destroy(Attendance $attendance)
     {
         Attendance::destroy($attendance->id);
-        return redirect('/attendances')->with('status', 'Meeting Berhasil Dihapus!');
+        return redirect('/attendances')->with('status', 'Kehadiran Berhasil Dihapus!');
     }
 }

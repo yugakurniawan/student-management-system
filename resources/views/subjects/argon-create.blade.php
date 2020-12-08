@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="teacher_id" class="form-control-label">Daftar Guru</label>
+                                        <label for="teacher_id" class="form-control-label">Guru Pengajar</label>
                                         <select class="form-control js-example-basic-multiple2" name="teacher_id"
                                             multiple="multiple">
                                             @foreach ($teachers as $item)
